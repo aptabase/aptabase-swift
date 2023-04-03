@@ -19,7 +19,7 @@ let package = Package(
     ...
     dependencies: [
         ...
-        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", branch: "master"), // Add the package
+        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", branch: "main"), // Add the package
     ],
     targets: [
         .target(
