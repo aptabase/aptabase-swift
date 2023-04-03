@@ -1,14 +1,12 @@
-//
-//  HelloWorldApp.swift
-//  HelloWorld
-//
-//  Created by Guilherme Oenning on 03/04/2023.
-//
-
 import SwiftUI
+import Aptabase
 
 @main
 struct HelloWorldApp: App {
+    init() {
+        Aptabase.initialize(appKey: "A-DEV-000");
+    }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

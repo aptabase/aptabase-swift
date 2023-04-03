@@ -1,21 +1,17 @@
-//
-//  ContentView.swift
-//  HelloWorld
-//
-//  Created by Guilherme Oenning on 03/04/2023.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State var count: Int = 0
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text("Count = \(count)")
+            Button(action: {
+                self.count += 1
+            }) {
+                Text("Increment")
+            }.padding()
         }
-        .padding()
     }
 }
 

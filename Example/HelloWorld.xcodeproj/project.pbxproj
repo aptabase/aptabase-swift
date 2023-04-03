@@ -11,6 +11,7 @@
 		E2019AEA29DAEF2600204720 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* ContentView.swift */; };
 		E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEB29DAEF2700204720 /* Assets.xcassets */; };
 		E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */; };
+		E2019AF929DAF45C00204720 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2019AF829DAF45C00204720 /* Aptabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		E2019AE929DAEF2600204720 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E2019AEB29DAEF2700204720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2019AF629DAF18F00204720 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E2019AF929DAF45C00204720 /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -35,8 +38,10 @@
 		E2019ADB29DAEF2600204720 = {
 			isa = PBXGroup;
 			children = (
+				E2019AF529DAF18F00204720 /* Packages */,
 				E2019AE629DAEF2600204720 /* HelloWorld */,
 				E2019AE529DAEF2600204720 /* Products */,
+				E2019AF729DAF45C00204720 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +72,21 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		E2019AF529DAF18F00204720 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				E2019AF629DAF18F00204720 /* aptabase-swift */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		E2019AF729DAF45C00204720 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -83,6 +103,9 @@
 			dependencies = (
 			);
 			name = HelloWorld;
+			packageProductDependencies = (
+				E2019AF829DAF45C00204720 /* Aptabase */,
+			);
 			productName = HelloWorld;
 			productReference = E2019AE429DAEF2600204720 /* HelloWorld.app */;
 			productType = "com.apple.product-type.application";
@@ -337,6 +360,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		E2019AF829DAF45C00204720 /* Aptabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Aptabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E2019ADC29DAEF2600204720 /* Project object */;
 }
