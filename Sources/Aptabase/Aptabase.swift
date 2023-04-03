@@ -44,53 +44,55 @@ public class Aptabase {
     
     // Track an event and its properties
     public static func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        guard let appKey = _appKey, let env = _env, let apiURL = _apiURL else {
-            return
-        }
-        
-        let now = Date()
-        if (_lastTouched.distance(to: now) > SESSION_TIMEOUT) {
-            _sessionId = UUID()
-        }
-        
-        _lastTouched = now
-        
-        var request = URLRequest(url: apiURL)
-        request.httpMethod = "POST"
-        request.addValue(appKey, forHTTPHeaderField: "App-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let body: [String: Any] = [
-            "timestamp": dateFormatter.string(from: Date()),
-            "sessionId": _sessionId.uuidString.lowercased(),
-            "eventName": eventName,
-            "systemProps": [
-                "osName": env.osName,
-                "osVersion": env.osVersion,
-                "locale": env.locale,
-                "appVersion": env.appVersion,
-                "appBuildNumber": env.appBuildNumber,
-                "sdkVersion": SDK_VERSION
-            ],
-            "props": props
-        ]
-        
-        request.httpBody = try! JSONSerialization.data(withJSONObject: body)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "unknown error")
+        DispatchQueue.global().async { [self] in
+            guard let appKey = _appKey, let env = _env, let apiURL = _apiURL else {
                 return
             }
             
-            if let response = response as? HTTPURLResponse, let body = String(data: data, encoding: .utf8) {
-                if (response.statusCode >= 300) {
-                    print("trackEvent failed with status code \(response.statusCode): \(body)")
+            let now = Date()
+            if (_lastTouched.distance(to: now) > SESSION_TIMEOUT) {
+                _sessionId = UUID()
+            }
+            
+            _lastTouched = now
+            
+            var request = URLRequest(url: apiURL)
+            request.httpMethod = "POST"
+            request.addValue(appKey, forHTTPHeaderField: "App-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            let body: [String: Any] = [
+                "timestamp": dateFormatter.string(from: Date()),
+                "sessionId": _sessionId.uuidString.lowercased(),
+                "eventName": eventName,
+                "systemProps": [
+                    "osName": env.osName,
+                    "osVersion": env.osVersion,
+                    "locale": env.locale,
+                    "appVersion": env.appVersion,
+                    "appBuildNumber": env.appBuildNumber,
+                    "sdkVersion": SDK_VERSION
+                ],
+                "props": props
+            ]
+            
+            request.httpBody = try! JSONSerialization.data(withJSONObject: body)
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "unknown error")
+                    return
+                }
+                
+                if let response = response as? HTTPURLResponse, let body = String(data: data, encoding: .utf8) {
+                    if (response.statusCode >= 300) {
+                        print("trackEvent failed with status code \(response.statusCode): \(body)")
+                    }
                 }
             }
-        }
 
-        task.resume()
+            task.resume()
+        }
     }
     
     static var dateFormatter: DateFormatter = {
