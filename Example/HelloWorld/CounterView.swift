@@ -1,6 +1,7 @@
 import SwiftUI
+import Aptabase
 
-struct ContentView: View {
+struct CounterView: View {
     @State var count: Int = 0
     
     var body: some View {
@@ -8,6 +9,7 @@ struct ContentView: View {
             Text("Count = \(count)")
             Button(action: {
                 self.count += 1
+                Aptabase.trackEvent("Increment", with: ["count": self.count])
             }) {
                 Text("Increment")
             }.padding()
@@ -15,8 +17,8 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct CounterView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CounterView()
     }
 }

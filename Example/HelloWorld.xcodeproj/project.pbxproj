@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E2019AE829DAEF2600204720 /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE729DAEF2600204720 /* HelloWorldApp.swift */; };
-		E2019AEA29DAEF2600204720 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* ContentView.swift */; };
+		E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* CounterView.swift */; };
 		E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEB29DAEF2700204720 /* Assets.xcassets */; };
 		E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */; };
 		E2019AF929DAF45C00204720 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2019AF829DAF45C00204720 /* Aptabase */; };
@@ -17,7 +17,7 @@
 /* Begin PBXFileReference section */
 		E2019AE429DAEF2600204720 /* HelloWorld.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorld.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E2019AE729DAEF2600204720 /* HelloWorldApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldApp.swift; sourceTree = "<group>"; };
-		E2019AE929DAEF2600204720 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E2019AE929DAEF2600204720 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		E2019AEB29DAEF2700204720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E2019AF629DAF18F00204720 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ..; sourceTree = "<group>"; };
@@ -57,7 +57,7 @@
 			isa = PBXGroup;
 			children = (
 				E2019AE729DAEF2600204720 /* HelloWorldApp.swift */,
-				E2019AE929DAEF2600204720 /* ContentView.swift */,
+				E2019AE929DAEF2600204720 /* CounterView.swift */,
 				E2019AEB29DAEF2700204720 /* Assets.xcassets */,
 				E2019AED29DAEF2700204720 /* Preview Content */,
 			);
@@ -160,7 +160,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2019AEA29DAEF2600204720 /* ContentView.swift in Sources */,
+				E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */,
 				E2019AE829DAEF2600204720 /* HelloWorldApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
