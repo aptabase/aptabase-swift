@@ -32,8 +32,10 @@ public struct EnvironmentInfo {
         #if os(macOS)
         return "macOS"
         #elseif os(iOS)
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            return "iPadOS"
+        if #available(iOS 13.0, *) {
+            if UIDevice.current.userInterfaceIdiom == .pad {
+                return "iPadOS"
+            }
         }
         return "iOS"
         #elseif os(watchOS)
