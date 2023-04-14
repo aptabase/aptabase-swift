@@ -47,7 +47,7 @@ import Aptabase
 @main
 struct ExampleApp: App {
     init() {
-        Aptabase.initialize(appKey: "<YOUR_APP_KEY>"); // 👈 this is where you enter your App Key
+        Aptabase.shared.initialize(appKey: "<YOUR_APP_KEY>"); // 👈 this is where you enter your App Key
     }
     
     var body: some Scene {
@@ -63,8 +63,8 @@ Afterwards you can start tracking events with `trackEvent`:
 ```swift
 import Aptabase
 
-Aptabase.trackEvent("connect_click"); // An event with no properties
-Aptabase.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
+Aptabase.shared.trackEvent("connect_click"); // An event with no properties
+Aptabase.shared.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
 ```
 
 A few important notes:
