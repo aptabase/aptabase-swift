@@ -9,7 +9,7 @@ struct CounterView: View {
             Text("Count = \(count)")
             Button(action: {
                 self.count += 1
-                Aptabase.trackEvent("Increment", with: ["count": self.count])
+                Aptabase.shared.trackEvent("Increment", with: ["count": self.count])
             }) {
                 Text("Increment")
             }.padding()

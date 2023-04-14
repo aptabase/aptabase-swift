@@ -10,24 +10,26 @@ import TVUIKit
 
 // The Aptabase client used to track events
 public class Aptabase {
-    private static var SDK_VERSION = "aptabase-swift@0.0.2";
+    private static var SDK_VERSION = "aptabase-swift@0.0.3";
     
     // Session expires after 1 hour of inactivity
-    private static var SESSION_TIMEOUT: TimeInterval = 1 * 60 * 60
-    private static var _appKey: String?
-    private static var _sessionId = UUID()
-    private static var _env: EnvironmentInfo?
-    private static var _lastTouched = Date()
-    private static var _apiURL: URL?
+    private var SESSION_TIMEOUT: TimeInterval = 1 * 60 * 60
+    private var _appKey: String?
+    private var _sessionId = UUID()
+    private var _env: EnvironmentInfo?
+    private var _lastTouched = Date()
+    private var _apiURL: URL?
+
+    public static let shared = Aptabase()
     
-    private static var _regions = [
+    private var _regions = [
         "US": "https://api-us.aptabase.com",
         "EU": "https://api-eu.aptabase.com",
         "DEV": "http://localhost:5251"
     ]
     
     // Initializes the client with given App Key
-    public static func initialize(appKey: String) {
+    public func initialize(appKey: String) {
         let parts = appKey.components(separatedBy: "-")
         if parts.count != 3 {
             print("The Aptabase App Key \(appKey) is invalid. Tracking will be disabled.");
@@ -43,7 +45,7 @@ public class Aptabase {
     }
     
     // Track an event and its properties
-    public static func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
+    public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
         DispatchQueue.global().async { [self] in
             guard let appKey = _appKey, let env = _env, let apiURL = _apiURL else {
                 return
@@ -71,7 +73,7 @@ public class Aptabase {
                     "locale": env.locale,
                     "appVersion": env.appVersion,
                     "appBuildNumber": env.appBuildNumber,
-                    "sdkVersion": SDK_VERSION
+                    "sdkVersion": Aptabase.SDK_VERSION
                 ],
                 "props": props
             ]
@@ -95,7 +97,7 @@ public class Aptabase {
         }
     }
     
-    static var dateFormatter: DateFormatter = {
+    var dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         formatter.locale = Locale(identifier: "en_US")
