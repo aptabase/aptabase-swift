@@ -23,9 +23,9 @@ public class Aptabase {
     public static let shared = Aptabase()
     
     private var _regions = [
-        "US": "https://api-us.aptabase.com",
-        "EU": "https://api-eu.aptabase.com",
-        "DEV": "http://localhost:5251"
+        "US": "https://us.aptabase.com",
+        "EU": "https://eu.aptabase.com",
+        "DEV": "http://localhost:3000"
     ]
     
     // Initializes the client with given App Key
@@ -39,7 +39,7 @@ public class Aptabase {
         let region = parts[1]
         let baseURL = _regions[region] ?? _regions["DEV"]!
         
-        _apiURL = URL(string: "\(baseURL)/v0/event")!
+        _apiURL = URL(string: "\(baseURL)/api/v0/event")!
         _appKey = appKey
         _env = EnvironmentInfo.get()
     }
