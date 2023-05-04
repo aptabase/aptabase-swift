@@ -49,7 +49,7 @@ public struct EnvironmentInfo {
     
     private static func getOSVersion() -> String {
         #if os(macOS)
-        var os = ProcessInfo.processInfo.operatingSystemVersion;
+        let os = ProcessInfo.processInfo.operatingSystemVersion;
         return "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
         #elseif os(iOS)
         return UIDevice.current.systemVersion

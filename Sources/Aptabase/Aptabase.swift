@@ -8,9 +8,17 @@ import WatchKit
 import TVUIKit
 #endif
 
+public struct InitOptions {
+    let host: String?
+    
+    public init(host: String? = nil) {
+        self.host = host
+    }
+}
+
 // The Aptabase client used to track events
 public class Aptabase {
-    private static var SDK_VERSION = "aptabase-swift@0.0.3";
+    private static var SDK_VERSION = "aptabase-swift@0.0.5";
     
     // Session expires after 1 hour of inactivity
     private var SESSION_TIMEOUT: TimeInterval = 1 * 60 * 60
@@ -22,26 +30,37 @@ public class Aptabase {
 
     public static let shared = Aptabase()
     
-    private var _regions = [
+    private var _hosts = [
         "US": "https://us.aptabase.com",
         "EU": "https://eu.aptabase.com",
-        "DEV": "http://localhost:3000"
+        "DEV": "http://localhost:3000",
+        "SH": ""
     ]
     
     // Initializes the client with given App Key
-    public func initialize(appKey: String) {
+    public func initialize(appKey: String, with opts: InitOptions? = nil) {
         let parts = appKey.components(separatedBy: "-")
-        if parts.count != 3 {
+        if parts.count != 3 || _hosts[parts[1]] == nil {
             print("The Aptabase App Key \(appKey) is invalid. Tracking will be disabled.");
             return
         }
         
-        let region = parts[1]
-        let baseURL = _regions[region] ?? _regions["DEV"]!
-        
-        _apiURL = URL(string: "\(baseURL)/api/v0/event")!
+        _apiURL = getApiUrl(parts[1], opts)
         _appKey = appKey
         _env = EnvironmentInfo.get()
+    }
+    
+    private func getApiUrl(_ region: String, _ opts: InitOptions?) -> URL? {
+        var baseURL = _hosts[region]!
+        if region == "SH" {
+            guard let host = opts?.host else {
+                print("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.");
+                return nil
+            }
+            baseURL = host
+        }
+        
+        return URL(string: "\(baseURL)/api/v0/event")!
     }
     
     // Track an event and its properties
