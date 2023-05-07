@@ -32,7 +32,7 @@ let package = Package(
 
 #### Option 2: Adding package dependencies with Xcode
 
-Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift.git for the url when Xcode asks.
+Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift for the url when Xcode asks.
 
 ## Usage
 
@@ -47,7 +47,7 @@ import Aptabase
 @main
 struct ExampleApp: App {
     init() {
-        Aptabase.shared.initialize(appKey: "<YOUR_APP_KEY>"); // 👈 this is where you enter your App Key
+        Aptabase.shared.initialize(appKey: "<YOUR_APP_KEY>") // 👈 this is where you enter your App Key
     }
     
     var body: some Scene {
@@ -63,7 +63,7 @@ Afterwards you can start tracking events with `trackEvent`:
 ```swift
 import Aptabase
 
-Aptabase.shared.trackEvent("connect_click"); // An event with no properties
+Aptabase.shared.trackEvent("connect_click") // An event with no properties
 Aptabase.shared.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
 ```
 
