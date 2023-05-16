@@ -74,3 +74,7 @@ A few important notes:
    - Because of this, it's generally recommended to at least track an event at startup
 3. The `trackEvent` function is a non-blocking operation as it runs on the background.
 4. Only strings and numbers values are allowed on custom properties
+
+## Preparing for Submission to Apple App Store
+
+When submitting your app to the Apple App Store, you'll need to fill out the `App Privacy` form. You can find all the answers on our [How to fill out the Apple App Privacy when using Aptabase](https://aptabase.com/docs/apple-app-privacy) guide.
