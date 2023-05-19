@@ -9,6 +9,7 @@ import TVUIKit
 #endif
 
 public struct EnvironmentInfo {
+    var isDebug = false
     var osName = ""
     var osVersion = ""
     var locale = ""
@@ -20,12 +21,21 @@ public struct EnvironmentInfo {
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
         return EnvironmentInfo(
+            isDebug: getIsDebug(),
             osName: getOSName(),
             osVersion: getOSVersion(),
             locale: Locale.current.languageCode ?? "",
             appVersion: appVersion ?? "",
             appBuildNumber: appBuildNumber ?? ""
         )
+    }
+    
+    private static func getIsDebug() -> Bool {
+        #if DEBUG
+        return true
+        #else
+        return false
+        #endif
     }
     
     private static func getOSName() -> String {
