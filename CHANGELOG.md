@@ -1,3 +1,7 @@
+## 0.0.7
+
+* Added support for CocoaPods
+
 ## 0.0.6
 
 * Added support for automatic segregation of Debug/Release data source

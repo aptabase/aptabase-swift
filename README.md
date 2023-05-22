@@ -19,11 +19,11 @@ let package = Package(
     ...
     dependencies: [
         ...
-        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", branch: "main"), // Add the package
+        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.0.7"),
     ],
     targets: [
         .target(
-            name: "YourTargetName",
+            name: "MyApp",
             dependencies: ["Aptabase"] // Add as a dependency
         )
     ]
@@ -39,7 +39,7 @@ Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-
 Aptabase is alsoavailable through CocoaPods. To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Aptabase', '~> 0.0.6'
+pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.0.7'
 ```
 
 ## Usage
