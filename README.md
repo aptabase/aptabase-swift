@@ -34,6 +34,14 @@ let package = Package(
 
 Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift for the url when Xcode asks.
 
+#### Option 3: CocoaPods
+
+Aptabase is alsoavailable through CocoaPods. To install it, simply add the following line to your Podfile:
+
+```ruby
+pod 'Aptabase', '~> 0.0.6'
+```
+
 ## Usage
 
 First you need to get your `App Key` from Aptabase, you can find it in the `Instructions` menu on the left side menu.
