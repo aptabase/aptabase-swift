@@ -1,5 +1,6 @@
-## 0.0.8
+## 0.1.0
 
+* BREAKING CHANGE: Renamed `Aptabase` to `AptabaseClient`
 * General refactor
 * Added xcframework binary target
 

@@ -14,11 +14,11 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.abi.json</key>
 		<data>
-		uQ8PfxgLU86J4TS+wapS+krEStM=
+		ueQmtQCJx7Rd8JS4oybpUk6D8mA=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.private.swiftinterface</key>
 		<data>
-		7nL65Qs7aeKX9KitIN+xCQp13zs=
+		VNWgCZ2t/7aWtFoqlBAgWdV7ZrI=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.swiftdoc</key>
 		<data>
@@ -26,19 +26,19 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.swiftinterface</key>
 		<data>
-		7nL65Qs7aeKX9KitIN+xCQp13zs=
+		VNWgCZ2t/7aWtFoqlBAgWdV7ZrI=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.swiftmodule</key>
 		<data>
-		7C/XGTFdIGArYslLBMSJNDPBP3w=
+		F29rsMIoW15nt60RLtUKwujlcFc=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.abi.json</key>
 		<data>
-		uQ8PfxgLU86J4TS+wapS+krEStM=
+		ueQmtQCJx7Rd8JS4oybpUk6D8mA=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.private.swiftinterface</key>
 		<data>
-		Ppi+eoEKBj0IApgDpDq9A45xMxM=
+		oXpY3vzQN4d1c9EuhUl/PwGnd6I=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.swiftdoc</key>
 		<data>
@@ -46,11 +46,11 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.swiftinterface</key>
 		<data>
-		Ppi+eoEKBj0IApgDpDq9A45xMxM=
+		oXpY3vzQN4d1c9EuhUl/PwGnd6I=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule</key>
 		<data>
-		ezQGav2nBj3ponSeoS9nYKXmr8U=
+		08l2QNLxrsVKhGzcqOJaZ8S8ewo=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -66,14 +66,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			9DaT4ZSlRXHwHENXJKPMkD3/6CBSTeKjnZRf3sgTCRU=
+			fPhQL/Qm8VWTlHIZaSpqOY3LGxLwaQWzdi6wLM4wIJE=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ugnbOdZMqMUopEPQmphCs7bk6C/5mO9xY368kDQkMq8=
+			z1akOm1vvBuVlZxk2cMprvzaRYsZGahqV0pWFXRITU0=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.swiftdoc</key>
@@ -87,28 +87,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ugnbOdZMqMUopEPQmphCs7bk6C/5mO9xY368kDQkMq8=
+			z1akOm1vvBuVlZxk2cMprvzaRYsZGahqV0pWFXRITU0=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-tvos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			IrNTm4+v+dMyCNdYLuAvzDAKQdKQqf2v5zC9QkQHBK4=
+			a/+eRD6S2bBNzGF+p4j9HYZZPByc1TlvrYD+CHzyuHg=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			9DaT4ZSlRXHwHENXJKPMkD3/6CBSTeKjnZRf3sgTCRU=
+			fPhQL/Qm8VWTlHIZaSpqOY3LGxLwaQWzdi6wLM4wIJE=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AcsIjEa3NeiJCqU7cvaIUEUaPGDFIvKHuYf7x2oMhy4=
+			g9PjHQdDAGwTaJpKYbGc+3yOp8c+MBzHwNsbfdU9EQ8=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.swiftdoc</key>
@@ -122,14 +122,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			AcsIjEa3NeiJCqU7cvaIUEUaPGDFIvKHuYf7x2oMhy4=
+			g9PjHQdDAGwTaJpKYbGc+3yOp8c+MBzHwNsbfdU9EQ8=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-tvos-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			RKNFzXhDq0V4aG1uXccOO7cDkWTRbBmHR76QrMw1acg=
+			sTFsay9nHsn8tT5pmY+lc66x1SFJRuc+xTaVJVe7nrA=
 			</data>
 		</dict>
 	</dict>

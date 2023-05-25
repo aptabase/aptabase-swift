@@ -19,7 +19,7 @@ let package = Package(
     ...
     dependencies: [
         ...
-        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.0.8"),
+        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.1.0"),
     ],
     targets: [
         .target(
@@ -39,7 +39,7 @@ Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-
 Aptabase is alsoavailable through CocoaPods. To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.0.8'
+pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.1.0'
 ```
 
 ## Usage
@@ -71,8 +71,8 @@ Afterwards you can start tracking events with `trackEvent`:
 ```swift
 import Aptabase
 
-Aptabase.shared.trackEvent("connect_click") // An event with no properties
-Aptabase.shared.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
+AptabaseClient.shared.trackEvent("connect_click") // An event with no properties
+AptabaseClient.shared.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
 ```
 
 A few important notes:

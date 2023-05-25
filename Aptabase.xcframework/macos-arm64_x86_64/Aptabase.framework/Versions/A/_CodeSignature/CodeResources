@@ -22,14 +22,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			hNezIwO+3rCBny2E+BFL78L2fROgJAotMMG0NWAH6UQ=
+			QGOaQiFg5rxfHwnwEyxgVoJh+ISijqfXcEXZLxmw9IY=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			6WcpVZJNPe9+E9vDe5A/k+fz7IbynVIfEdI4DZgQEMo=
+			BZBbaf83z2yHpuljBVO4x2WzjLmL+w57ZSJ+UZHV7hs=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-macos.swiftdoc</key>
@@ -43,28 +43,28 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			6WcpVZJNPe9+E9vDe5A/k+fz7IbynVIfEdI4DZgQEMo=
+			BZBbaf83z2yHpuljBVO4x2WzjLmL+w57ZSJ+UZHV7hs=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cots3uuXFXnscz2sQagASGwYSeDevO5ePoQE3OmkUhU=
+			TmD4pAP4b7in3EJFLaOpdCJYrcdn4ssE5dEtKW3Birk=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-macos.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			hNezIwO+3rCBny2E+BFL78L2fROgJAotMMG0NWAH6UQ=
+			QGOaQiFg5rxfHwnwEyxgVoJh+ISijqfXcEXZLxmw9IY=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-macos.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			cMG+oWJjSmqx2F/AgoBz2KvC3AJ4XVoiwdnn1k263cU=
+			FMd6e8mKOiU+l7qNJh7E5uDSjXMpeOPtWqBQsJwSA0w=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-macos.swiftdoc</key>
@@ -78,14 +78,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			cMG+oWJjSmqx2F/AgoBz2KvC3AJ4XVoiwdnn1k263cU=
+			FMd6e8mKOiU+l7qNJh7E5uDSjXMpeOPtWqBQsJwSA0w=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-macos.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wSACBpIOR29sS+MERmcg6pLRYRr4n0f110VcmTh0JcI=
+			a1GJhORboQBT7Kv6wVur8gHQY11/o2szVKaCJ08tgvI=
 			</data>
 		</dict>
 		<key>Resources/Info.plist</key>
