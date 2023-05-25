@@ -16,59 +16,57 @@ public struct EnvironmentInfo {
     var appVersion = ""
     var appBuildNumber = ""
     
-    public static func get() -> EnvironmentInfo{
+    public static func get() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
         return EnvironmentInfo(
-            isDebug: getIsDebug(),
-            osName: getOSName(),
-            osVersion: getOSVersion(),
+            isDebug: isDebug,
+            osName: osName,
+            osVersion: osVersion,
             locale: Locale.current.languageCode ?? "",
             appVersion: appVersion ?? "",
             appBuildNumber: appBuildNumber ?? ""
         )
     }
     
-    private static func getIsDebug() -> Bool {
+    private static var isDebug: Bool {
         #if DEBUG
-        return true
+        true
         #else
-        return false
+        false
         #endif
     }
     
-    private static func getOSName() -> String {
+    private static var osName: String {
         #if os(macOS)
-        return "macOS"
-        #elseif os(iOS)
-        if #available(iOS 13.0, *) {
-            if UIDevice.current.userInterfaceIdiom == .pad {
-                return "iPadOS"
-            }
+        "macOS"
+#elseif os(iOS)
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            return "iPadOS"
         }
         return "iOS"
         #elseif os(watchOS)
-        return "watchOS"
+        "watchOS"
         #elseif os(tvOS)
-        return "tvOS"
+        "tvOS"
         #else
-        return ""
+        ""
         #endif
     }
     
-    private static func getOSVersion() -> String {
+    private static var osVersion: String {
         #if os(macOS)
-        let os = ProcessInfo.processInfo.operatingSystemVersion;
+        let os = ProcessInfo.processInfo.operatingSystemVersion
         return "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
         #elseif os(iOS)
-        return UIDevice.current.systemVersion
+        UIDevice.current.systemVersion
         #elseif os(watchOS)
-        return WKInterfaceDevice.current().systemVersion
+        WKInterfaceDevice.current().systemVersion
         #elseif os(tvOS)
-        return UIDevice.current.systemVersion
+        UIDevice.current.systemVersion
         #else
-        return ""
+        ""
         #endif
     }
 }
