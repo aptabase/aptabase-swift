@@ -1,16 +1,8 @@
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import AppKit
-#elseif os(watchOS)
-import WatchKit
-#elseif os(tvOS)
-import TVUIKit
-#endif
+import Foundation
 
 public struct InitOptions {
     let host: String?
-    
+
     public init(host: String? = nil) {
         self.host = host
     }
@@ -18,73 +10,76 @@ public struct InitOptions {
 
 // The Aptabase client used to track events
 public class Aptabase {
-    private static var SDK_VERSION = "aptabase-swift@0.0.7";
+    private static var sdkVersion = "aptabase-swift@0.0.7";
     
     // Session expires after 1 hour of inactivity
-    private var SESSION_TIMEOUT: TimeInterval = 1 * 60 * 60
-    private var _appKey: String?
-    private var _sessionId = UUID()
-    private var _env: EnvironmentInfo?
-    private var _lastTouched = Date()
-    private var _apiURL: URL?
+    private var sessionTimeout: TimeInterval = 1 * 60 * 60
+    private var appKey: String?
+    private var sessionId = UUID()
+    private var env: EnvironmentInfo?
+    private var lastTouched = Date()
+    private var apiURL: URL?
 
     public static let shared = Aptabase()
     
-    private var _hosts = [
+    private var hosts = [
         "US": "https://us.aptabase.com",
         "EU": "https://eu.aptabase.com",
         "DEV": "http://localhost:3000",
         "SH": ""
     ]
+
+    let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        return formatter
+    }()
     
     // Initializes the client with given App Key
-    public func initialize(appKey: String, with opts: InitOptions? = nil) {
+    public func initialize(appKey: String, with options: InitOptions? = nil) {
         let parts = appKey.components(separatedBy: "-")
-        if parts.count != 3 || _hosts[parts[1]] == nil {
-            print("The Aptabase App Key \(appKey) is invalid. Tracking will be disabled.");
+        if parts.count != 3 || hosts[parts[1]] == nil {
+            debugPrint("The Aptabase App Key \(appKey) is invalid. Tracking will be disabled.")
             return
         }
         
-        _apiURL = getApiUrl(parts[1], opts)
-        _appKey = appKey
-        _env = EnvironmentInfo.get()
+        apiURL = getApiUrl(parts[1], options?.host)
+        self.appKey = appKey
+        env = EnvironmentInfo.get()
     }
     
-    private func getApiUrl(_ region: String, _ opts: InitOptions?) -> URL? {
-        var baseURL = _hosts[region]!
+    private func getApiUrl(_ region: String, _ host: String?) -> URL? {
+        guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
-            guard let host = opts?.host else {
-                print("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.");
+            guard let host else {
+                debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
                 return nil
             }
             baseURL = host
         }
         
-        return URL(string: "\(baseURL)/api/v0/event")!
+        return URL(string: "\(baseURL)/api/v0/event")
     }
     
     // Track an event and its properties
     public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        DispatchQueue.global().async { [self] in
-            guard let appKey = _appKey, let env = _env, let apiURL = _apiURL else {
+        DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
+            guard let appKey, let env, let apiURL else {
                 return
             }
             
             let now = Date()
-            if (_lastTouched.distance(to: now) > SESSION_TIMEOUT) {
-                _sessionId = UUID()
+            if (lastTouched.distance(to: now) > sessionTimeout) {
+                sessionId = UUID()
             }
             
-            _lastTouched = now
-            
-            var request = URLRequest(url: apiURL)
-            request.httpMethod = "POST"
-            request.addValue(appKey, forHTTPHeaderField: "App-Key")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
+            lastTouched = now
+
             let body: [String: Any] = [
                 "timestamp": dateFormatter.string(from: Date()),
-                "sessionId": _sessionId.uuidString.lowercased(),
+                "sessionId": sessionId.uuidString.lowercased(),
                 "eventName": eventName,
                 "systemProps": [
                     "isDebug": env.isDebug,
@@ -93,35 +88,33 @@ public class Aptabase {
                     "locale": env.locale,
                     "appVersion": env.appVersion,
                     "appBuildNumber": env.appBuildNumber,
-                    "sdkVersion": Aptabase.SDK_VERSION
+                    "sdkVersion": Aptabase.sdkVersion
                 ] as [String : Any],
                 "props": props
             ]
-            
-            request.httpBody = try! JSONSerialization.data(withJSONObject: body)
+
+            guard let body = try? JSONSerialization.data(withJSONObject: body) else { return }
+
+            var request = URLRequest(url: apiURL)
+            request.httpBody = body
+            request.httpMethod = "POST"
+            request.addValue(appKey, forHTTPHeaderField: "App-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "unknown error")
+                guard let data, error == nil else {
+                    debugPrint(error?.localizedDescription ?? "unknown error")
                     return
                 }
                 
-                if let response = response as? HTTPURLResponse, let body = String(data: data, encoding: .utf8) {
-                    if (response.statusCode >= 300) {
-                        print("trackEvent failed with status code \(response.statusCode): \(body)")
-                    }
+                if let response = response as? HTTPURLResponse,
+                   let body = String(data: data, encoding: .utf8),
+                   response.statusCode >= 300 {
+                    debugPrint("trackEvent failed with status code \(response.statusCode): \(body)")
                 }
             }
 
             task.resume()
         }
     }
-    
-    var dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        return formatter
-    }()
 }
