@@ -1,3 +1,8 @@
+## 0.0.8
+
+* General refactor
+* Added xcframework binary target
+
 ## 0.0.7
 
 * Added support for CocoaPods
