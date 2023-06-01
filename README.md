@@ -42,7 +42,10 @@ Aptabase is alsoavailable through CocoaPods. To install it, simply add the follo
 pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.0.7'
 ```
 
+
 ## Usage
+
+> If you're targeting macOS, you must first enable the `Outgoing Connections (Client)` checkbox under the `App Sandbox` section.
 
 First you need to get your `App Key` from Aptabase, you can find it in the `Instructions` menu on the left side menu.
 
