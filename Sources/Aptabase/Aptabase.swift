@@ -10,7 +10,7 @@ public struct InitOptions {
 
 // The Aptabase client used to track events
 public class Aptabase {
-    private static var sdkVersion = "aptabase-swift@0.0.7";
+    private static var sdkVersion = "aptabase-swift@0.1.0";
     
     // Session expires after 1 hour of inactivity
     private var sessionTimeout: TimeInterval = 1 * 60 * 60
@@ -64,7 +64,7 @@ public class Aptabase {
     }
     
     // Track an event and its properties
-    public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
+    public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
         DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
             guard let appKey, let env, let apiURL else {
                 return
@@ -92,7 +92,12 @@ public class Aptabase {
                 ] as [String : Any],
                 "props": props
             ]
-
+            
+            if !JSONSerialization.isValidJSONObject(props) {
+                debugPrint("Aptabase: unable to serialize custom props. Event will be discarded.")
+                return
+            }
+            
             guard let body = try? JSONSerialization.data(withJSONObject: body) else { return }
 
             var request = URLRequest(url: apiURL)
