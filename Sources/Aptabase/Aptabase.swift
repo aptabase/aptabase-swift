@@ -9,7 +9,7 @@ public struct InitOptions {
 }
 
 // The Aptabase client used to track events
-public class Aptabase {
+public class AptabaseClient {
     private static var sdkVersion = "aptabase-swift@0.1.1";
     
     // Session expires after 1 hour of inactivity
@@ -20,7 +20,7 @@ public class Aptabase {
     private var lastTouched = Date()
     private var apiURL: URL?
 
-    public static let shared = Aptabase()
+    public static let shared = AptabaseClient()
     
     private var hosts = [
         "US": "https://us.aptabase.com",
@@ -88,7 +88,7 @@ public class Aptabase {
                     "locale": env.locale,
                     "appVersion": env.appVersion,
                     "appBuildNumber": env.appBuildNumber,
-                    "sdkVersion": Aptabase.sdkVersion
+                    "sdkVersion": AptabaseClient.sdkVersion
                 ] as [String : Any],
                 "props": props
             ]

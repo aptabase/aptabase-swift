@@ -10,8 +10,8 @@ import _StringProcessing
 public struct InitOptions {
   public init(host: Swift.String? = nil)
 }
-@_hasMissingDesignatedInitializers public class Aptabase {
-  public static let shared: Aptabase.Aptabase
+@_hasMissingDesignatedInitializers public class AptabaseClient {
+  public static let shared: Aptabase.AptabaseClient
   public func initialize(appKey: Swift.String, with options: Aptabase.InitOptions? = nil)
   public func trackEvent(_ eventName: Swift.String, with props: [Swift.String : any Aptabase.Value] = [:])
   @objc deinit
