@@ -17,6 +17,6 @@ let package = Package(
     ],
     targets: [
         // .target(name: "Aptabase")
-        .binaryTarget(name: "Aptabase", path: "Aptabase.xcframework")
+        .binaryTarget(name: "AptabaseSwift", path: "Aptabase.xcframework")
     ]
 )
