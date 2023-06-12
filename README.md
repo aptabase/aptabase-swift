@@ -10,36 +10,18 @@ Instrument your apps with Aptabase, an Open Source, Privacy-First and Simple Ana
 
 ## Install
 
-#### Option 1: Swift Package Manager
+#### Option 1: Using Swift Package Manager with Xcode
 
-Add the following lines to your `Package.swift` file:
+1. On Xcode, select `File -> Add Package` and use https://github.com/aptabase/aptabase-swift for the url.
+2. Select your project and click `Add Package` button.
 
-```swift
-let package = Package(
-    ...
-    dependencies: [
-        ...
-        .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.1.0"),
-    ],
-    targets: [
-        .target(
-            name: "MyApp",
-            dependencies: ["Aptabase"] // Add as a dependency
-        )
-    ]
-)
-```
 
-#### Option 2: Adding package dependencies with Xcode
-
-Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift for the url when Xcode asks.
-
-#### Option 3: CocoaPods
+#### Option 2: CocoaPods
 
 Aptabase is alsoavailable through CocoaPods. To install it, simply add the following line to your Podfile:
 
 ```ruby
-pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.1.0'
+pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.1.1'
 ```
 
 

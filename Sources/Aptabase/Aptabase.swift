@@ -10,7 +10,7 @@ public struct InitOptions {
 
 // The Aptabase client used to track events
 public class Aptabase {
-    private static var sdkVersion = "aptabase-swift@0.1.0";
+    private static var sdkVersion = "aptabase-swift@0.1.1";
     
     // Session expires after 1 hour of inactivity
     private var sessionTimeout: TimeInterval = 1 * 60 * 60

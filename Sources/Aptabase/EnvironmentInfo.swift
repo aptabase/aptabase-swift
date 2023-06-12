@@ -31,11 +31,9 @@ public struct EnvironmentInfo {
     }
     
     private static var isDebug: Bool {
-        #if DEBUG
-        true
-        #else
-        false
-        #endif
+        // We use this func instead of conditional compilation
+        // because this package is pre-compiled for distribution
+        return _isDebugAssertConfiguration()
     }
     
     private static var osName: String {

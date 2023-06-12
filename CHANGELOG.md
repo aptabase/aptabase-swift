@@ -1,3 +1,7 @@
+## 0.1.1
+
+* Binary distribution for better compatibility
+
 ## 0.1.0
 
 * General refactor
