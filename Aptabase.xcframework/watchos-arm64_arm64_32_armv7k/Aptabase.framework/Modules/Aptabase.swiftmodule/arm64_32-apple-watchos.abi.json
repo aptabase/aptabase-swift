@@ -2970,294 +2970,294 @@
   },
   "ConstValues": [
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 253,
       "length": 22,
       "value": "\"aptabase-swift@0.1.1\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 379,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 383,
       "length": 2,
       "value": "60"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 388,
       "length": 2,
       "value": "60"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "Dictionary",
       "offset": 640,
       "length": 146,
       "value": "[(\"US\", \"https:\/\/us.aptabase.com\"), (\"EU\", \"https:\/\/eu.aptabase.com\"), (\"DEV\", \"http:\/\/localhost:3000\"), (\"SH\", \"\")]"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 900,
       "length": 26,
       "value": "\"yyyy-MM-dd'T'HH:mm:ss'Z'\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 973,
       "length": 7,
       "value": "\"en_US\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1032,
       "length": 5,
       "value": "\"UTC\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1256,
       "length": 3,
       "value": "\"-\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 1287,
       "length": 1,
       "value": "3"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 1304,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1340,
       "length": 71,
       "value": "\"The Aptabase App Key \""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1371,
       "length": 2,
       "value": "\" is invalid. Tracking will be disabled.\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 1484,
       "length": 1,
       "value": "1"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1734,
       "length": 4,
       "value": "\"SH\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 1802,
       "length": 91,
       "value": "\"Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2009,
       "length": 25,
       "value": "\"\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2020,
       "length": 1,
       "value": "\"\/api\/v0\/event\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "Dictionary",
       "offset": 2166,
       "length": 3,
       "value": "[]"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2202,
       "length": 23,
       "value": "\"com.aptabase.aptabase\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2596,
       "length": 11,
       "value": "\"timestamp\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2661,
       "length": 11,
       "value": "\"sessionId\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2725,
       "length": 11,
       "value": "\"eventName\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2765,
       "length": 13,
       "value": "\"systemProps\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2802,
       "length": 9,
       "value": "\"isDebug\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2846,
       "length": 8,
       "value": "\"osName\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2888,
       "length": 11,
       "value": "\"osVersion\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2936,
       "length": 8,
       "value": "\"locale\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 2978,
       "length": 12,
       "value": "\"appVersion\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3028,
       "length": 16,
       "value": "\"appBuildNumber\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3086,
       "length": 12,
       "value": "\"sdkVersion\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3179,
       "length": 7,
       "value": "\"props\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3309,
       "length": 70,
       "value": "\"Aptabase: unable to serialize custom props. Event will be discarded.\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3646,
       "length": 6,
       "value": "\"POST\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3710,
       "length": 9,
       "value": "\"App-Key\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3750,
       "length": 18,
       "value": "\"application\/json\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 3790,
       "length": 14,
       "value": "\"Content-Type\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 4025,
       "length": 15,
       "value": "\"unknown error\""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "IntegerLiteral",
       "offset": 4277,
       "length": 3,
       "value": "300"
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 4314,
       "length": 68,
       "value": "\"trackEvent failed with status code \""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 4372,
       "length": 1,
       "value": "\": \""
     },
     {
-      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/Aptabase.swift",
+      "filePath": "\/Users\/goenning\/Documents\/workspace\/aptabase\/aptabase-swift\/Sources\/Aptabase\/AptabaseClient.swift",
       "kind": "StringLiteral",
       "offset": 4381,
       "length": 2,

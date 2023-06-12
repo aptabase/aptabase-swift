@@ -14,7 +14,7 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-watchos-simulator.abi.json</key>
 		<data>
-		mrAXwcsS3SV2ySD9Nz3A5GhOW8I=
+		SlyOhYLtlfI6+MM5TMDtAYv355g=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-watchos-simulator.private.swiftinterface</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-watchos-simulator.swiftmodule</key>
 		<data>
-		jkkaY7wVMEl36luRQ56bahk18/4=
+		IXVl2fEOiwYCkycCXoTP85KCrNI=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/i386-apple-watchos-simulator.abi.json</key>
 		<data>
-		mrAXwcsS3SV2ySD9Nz3A5GhOW8I=
+		SlyOhYLtlfI6+MM5TMDtAYv355g=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/i386-apple-watchos-simulator.private.swiftinterface</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/i386-apple-watchos-simulator.swiftmodule</key>
 		<data>
-		pWGCs6EYc9nmwVXCTDCvSb++D1k=
+		trO/wvQEG+k66FY8iEVRdAYn8UE=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-watchos-simulator.abi.json</key>
 		<data>
-		mrAXwcsS3SV2ySD9Nz3A5GhOW8I=
+		SlyOhYLtlfI6+MM5TMDtAYv355g=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-watchos-simulator.private.swiftinterface</key>
 		<data>
@@ -70,7 +70,7 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-watchos-simulator.swiftmodule</key>
 		<data>
-		AbWWL0lHQP0v8gtQFykr49l0mOQ=
+		MnPl23uk5M9I90+IdrJG4QfgQLc=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -86,7 +86,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			O/iB4kQj3QT6utry8Jv3MY0GK5JOQRtPjM/WYAoEOqw=
+			dXCvQC9S/X4GbogTxfS4lAjCw5nlUYfEnIlL6ujGTP8=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-watchos-simulator.private.swiftinterface</key>
@@ -114,14 +114,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			I3wpMxFKRMAhWYocfWCWiLWUOojWuRCUbmenZGA683o=
+			L+8zNFTgll22wOU0fZ7pf6OBTZbX6rlHUCcR4cqEfcA=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/i386-apple-watchos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O/iB4kQj3QT6utry8Jv3MY0GK5JOQRtPjM/WYAoEOqw=
+			dXCvQC9S/X4GbogTxfS4lAjCw5nlUYfEnIlL6ujGTP8=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/i386-apple-watchos-simulator.private.swiftinterface</key>
@@ -149,14 +149,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			8m8+Htoa+dtqjfYyG6ThkoQNJ6v1747kmD/4UZuUamg=
+			kVrmH4cpx4fMeMOD8sqqMKcWxRe0bF3yMTKrXAnoxRg=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-watchos-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			O/iB4kQj3QT6utry8Jv3MY0GK5JOQRtPjM/WYAoEOqw=
+			dXCvQC9S/X4GbogTxfS4lAjCw5nlUYfEnIlL6ujGTP8=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-watchos-simulator.private.swiftinterface</key>
@@ -184,7 +184,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			HSemFN/OsAOCt4abGBslkjBg0wtnATaZcKu0eqg65ek=
+			609Uyju2o/GLNlm4/LJ+rvj2t/cnmbf3h7BMB19oENY=
 			</data>
 		</dict>
 	</dict>

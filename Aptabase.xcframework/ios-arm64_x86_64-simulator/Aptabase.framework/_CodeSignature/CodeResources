@@ -14,7 +14,7 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		kZ06F3DDAbbFFc7d/i6MwBV4KZ0=
+		U737m+UKMotMqEs6WF8t+fEGrPE=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		u6JPQIFOQ4U4HhAtqmJNbB4LSOM=
+		51vUrZw8D+vTl1T+m9IU9UK8QmE=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		kZ06F3DDAbbFFc7d/i6MwBV4KZ0=
+		U737m+UKMotMqEs6WF8t+fEGrPE=
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		wCFAceed6OmLToM9qUsQMmNgby4=
+		5z3v4JRq08Ct0p/ALqsi0fK7T9Q=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -66,7 +66,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			dq8VC3bjy6ZMgE5JjEdW9rbn5+dijz+ixFIB/Vn9c5Y=
+			lEdQTNNSnso7O1XCwSYT68O1XpvExvp6Sc7GPaNERQE=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
@@ -94,14 +94,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			YPwfMMkeRrZCE8JL+zwFAiaWeWeSGvnQh/ALdO4fFME=
+			y+rjfLdVBO4+Ye2CfG/pP5DkKna0YA2Q8pMkaCkZd34=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			dq8VC3bjy6ZMgE5JjEdW9rbn5+dijz+ixFIB/Vn9c5Y=
+			lEdQTNNSnso7O1XCwSYT68O1XpvExvp6Sc7GPaNERQE=
 			</data>
 		</dict>
 		<key>Modules/Aptabase.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
@@ -129,7 +129,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			5Kgi0meWlaCnR63Uj6GYSfbIiHYlI/nTRAvhwJB/72M=
+			aWlsK7HdsNJeaTns/JQtGA2LV0Yq7B/aE9m1tr82ut8=
 			</data>
 		</dict>
 	</dict>

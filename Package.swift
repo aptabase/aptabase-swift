@@ -16,7 +16,7 @@ let package = Package(
         .library(name: "Aptabase", targets: ["Aptabase"]),
     ],
     targets: [
-        // .target(name: "Aptabase")
+        // .target(name: "Aptabase", dependencies: [])
         .binaryTarget(name: "Aptabase", path: "Aptabase.xcframework")
     ]
 )
