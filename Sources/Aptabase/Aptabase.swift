@@ -9,7 +9,8 @@ public struct InitOptions {
 }
 
 // The Aptabase client used to track events
-public class Aptabase {
+@objcMembers
+public class Aptabase: NSObject {
     private static var sdkVersion = "aptabase-swift@0.1.0";
     
     // Session expires after 1 hour of inactivity
@@ -50,6 +51,12 @@ public class Aptabase {
         env = EnvironmentInfo.get()
     }
     
+    
+    @objc
+    public func initialize(appKey: String) {
+        initialize(appKey: appKey, with: nil)
+    }
+        
     private func getApiUrl(_ region: String, _ host: String?) -> URL? {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
@@ -64,7 +71,7 @@ public class Aptabase {
     }
     
     // Track an event and its properties
-    public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
+    public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
         DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
             guard let appKey, let env, let apiURL else {
                 return
