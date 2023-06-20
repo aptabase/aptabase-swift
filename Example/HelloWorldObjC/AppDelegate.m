@@ -20,7 +20,12 @@
     
     // Override point for customization after application launch.
     
+    
+    // Using cloud based APP key
     [[Aptabase shared] initializeWithAppKey:@"A-DEV-0000000000"];
+
+    // Using self hosted APP key
+//    [[Aptabase shared] initializeWithAppKey:@"A-SH-0000000000" parameters:@{@"host":@"https://yourdomain.com"}];
     
     return YES;
 }

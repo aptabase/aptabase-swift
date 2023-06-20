@@ -52,11 +52,18 @@ public class Aptabase: NSObject {
     }
     
     
-    @objc
+    public func initialize(appKey: String, parameters: [String:String]?) {
+        if let params = parameters, let host = params["host"] {
+            initialize(appKey: appKey, with: InitOptions(host: host))
+        }else{
+            initialize(appKey: appKey, with: nil)
+        }
+    }
+    
     public func initialize(appKey: String) {
         initialize(appKey: appKey, with: nil)
     }
-        
+
     private func getApiUrl(_ region: String, _ host: String?) -> URL? {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
