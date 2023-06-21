@@ -10,7 +10,7 @@ public final class InitOptions: NSObject {
 
 // The Aptabase client used to track events
 public class Aptabase: NSObject {
-    private static var sdkVersion = "aptabase-swift@0.1.0";
+    private static var sdkVersion = "aptabase-swift@0.2.0";
     
     // Session expires after 1 hour of inactivity
     private var sessionTimeout: TimeInterval = 1 * 60 * 60

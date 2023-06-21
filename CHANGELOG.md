@@ -1,3 +1,7 @@
+## 0.2.0
+
+* Added support for ObjC
+
 ## 0.1.0
 
 * General refactor
