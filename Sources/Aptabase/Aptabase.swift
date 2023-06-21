@@ -1,15 +1,15 @@
 import Foundation
 
-public struct InitOptions {
+public final class InitOptions: NSObject {
     let host: String?
 
-    public init(host: String? = nil) {
+    @objc public init(host: String? = nil) {
         self.host = host
     }
 }
 
 // The Aptabase client used to track events
-public class Aptabase {
+public class Aptabase: NSObject {
     private static var sdkVersion = "aptabase-swift@0.1.0";
     
     // Session expires after 1 hour of inactivity
@@ -20,7 +20,7 @@ public class Aptabase {
     private var lastTouched = Date()
     private var apiURL: URL?
 
-    public static let shared = Aptabase()
+    @objc public static let shared = Aptabase()
     
     private var hosts = [
         "US": "https://us.aptabase.com",
@@ -50,21 +50,24 @@ public class Aptabase {
         env = EnvironmentInfo.get()
     }
     
-    private func getApiUrl(_ region: String, _ host: String?) -> URL? {
-        guard var baseURL = hosts[region] else { return nil }
-        if region == "SH" {
-            guard let host else {
-                debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
-                return nil
-            }
-            baseURL = host
-        }
-        
-        return URL(string: "\(baseURL)/api/v0/event")
+    // Track an event using given properties
+    public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
+        sendEvent(eventName, with: props)
     }
     
-    // Track an event and its properties
-    public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
+    @objc public func initialize(appKey: String) {
+        initialize(appKey: appKey, with: nil)
+    }
+    
+    @objc public func initialize(appKey: String, options: InitOptions?) {
+        initialize(appKey: appKey, with: options)
+    }
+    
+    @objc public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
+        sendEvent(eventName, with: props)
+    }
+    
+    private func sendEvent(_ eventName: String, with props: [String: Any] = [:]) {
         DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
             guard let appKey, let env, let apiURL else {
                 return
@@ -121,5 +124,18 @@ public class Aptabase {
 
             task.resume()
         }
+    }
+    
+    private func getApiUrl(_ region: String, _ host: String?) -> URL? {
+        guard var baseURL = hosts[region] else { return nil }
+        if region == "SH" {
+            guard let host else {
+                debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
+                return nil
+            }
+            baseURL = host
+        }
+        
+        return URL(string: "\(baseURL)/api/v0/event")
     }
 }
