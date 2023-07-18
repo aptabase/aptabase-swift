@@ -8,7 +8,7 @@ import WatchKit
 import TVUIKit
 #endif
 
-public struct EnvironmentInfo {
+struct EnvironmentInfo {
     var isDebug = false
     var osName = ""
     var osVersion = ""
@@ -16,7 +16,7 @@ public struct EnvironmentInfo {
     var appVersion = ""
     var appBuildNumber = ""
     
-    public static func get() -> EnvironmentInfo {
+    static func get() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
