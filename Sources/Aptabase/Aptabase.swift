@@ -1,14 +1,16 @@
 import Foundation
 
+/// Initialization options for the client.
 public final class InitOptions: NSObject {
     let host: String?
 
+    /// - Parameter host: The custom host to use. If none provided will use Aptabase's servers.
     @objc public init(host: String? = nil) {
         self.host = host
     }
 }
 
-// The Aptabase client used to track events
+/// The Aptabase client used to track events.
 public class Aptabase: NSObject {
     private static var sdkVersion = "aptabase-swift@0.2.0";
     
@@ -20,6 +22,7 @@ public class Aptabase: NSObject {
     private var lastTouched = Date()
     private var apiURL: URL?
 
+    /// The shared client instance.
     @objc public static let shared = Aptabase()
     
     private var hosts = [
@@ -29,7 +32,7 @@ public class Aptabase: NSObject {
         "SH": ""
     ]
 
-    let dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
         formatter.locale = Locale(identifier: "en_US")
@@ -37,7 +40,10 @@ public class Aptabase: NSObject {
         return formatter
     }()
     
-    // Initializes the client with given App Key
+    /// Initializes the client with given App Key.
+    /// - Parameters:
+    ///   - appKey: The App Key to use.
+    ///   - options: Optional initialization options.
     public func initialize(appKey: String, with options: InitOptions? = nil) {
         let parts = appKey.components(separatedBy: "-")
         if parts.count != 3 || hosts[parts[1]] == nil {
@@ -50,19 +56,32 @@ public class Aptabase: NSObject {
         env = EnvironmentInfo.get()
     }
     
-    // Track an event using given properties
+    /// Track an event using given properties.
+    /// - Parameters:
+    ///   - eventName: The name of the event to track.
+    ///   - props: Additional given properties.
     public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
         sendEvent(eventName, with: props)
     }
     
+    /// Initializes the client with given App Key.
+    /// - Parameter appKey: The App Key to use.
     @objc public func initialize(appKey: String) {
         initialize(appKey: appKey, with: nil)
     }
-    
+
+    /// Initializes the client with given App Key.
+    /// - Parameters:
+    ///   - appKey: The App Key to use.
+    ///   - options: Optional initialization options.
     @objc public func initialize(appKey: String, options: InitOptions?) {
         initialize(appKey: appKey, with: options)
     }
     
+    /// Track an event using given properties.
+    /// - Parameters:
+    ///   - eventName: The name of the event to track.
+    ///   - props: Additional given properties.
     @objc public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
         sendEvent(eventName, with: props)
     }

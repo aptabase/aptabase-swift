@@ -1,3 +1,4 @@
+/// Protocol for supported property values.
 public protocol Value {}
 extension Int: Value {}
 extension Double: Value {}
