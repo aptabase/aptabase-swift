@@ -1,4 +1,4 @@
-// swift-tools-version: 5.6
+// swift-tools-version: 5.5
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
@@ -18,9 +18,7 @@ let package = Package(
             name: "Aptabase",
             targets: ["Aptabase"]),
     ],
-    dependencies: [
-        .package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"),
-    ],
+    dependencies: [],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
@@ -29,3 +27,9 @@ let package = Package(
             dependencies: [])
     ]
 )
+
+
+#if swift(>=5.6)
+// Add the DocC plugin if possible.
+package.dependencies.append(.package(url: "https://github.com/apple/swift-docc-plugin", from: "1.3.0"))
+#endif
