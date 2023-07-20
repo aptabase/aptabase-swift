@@ -1,3 +1,7 @@
+## 0.2.1
+
+* Added DocC support (thanks @manucheri)
+
 ## 0.2.0
 
 * Added support for ObjC
