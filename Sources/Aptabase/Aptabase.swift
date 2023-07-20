@@ -88,12 +88,12 @@ public class Aptabase: NSObject {
     
     private func sendEvent(_ eventName: String, with props: [String: Any] = [:]) {
         DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
-            guard let appKey, let env, let apiURL else {
+            guard let appKey = appKey, let env = env, let apiURL = apiURL else {
                 return
             }
             
             let now = Date()
-            if (lastTouched.distance(to: now) > sessionTimeout) {
+            if lastTouched.distance(to: now) > sessionTimeout {
                 sessionId = UUID()
             }
             
@@ -129,7 +129,7 @@ public class Aptabase: NSObject {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
             let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data, error == nil else {
+                guard let data = data, error == nil else {
                     debugPrint(error?.localizedDescription ?? "unknown error")
                     return
                 }
@@ -148,7 +148,7 @@ public class Aptabase: NSObject {
     private func getApiUrl(_ region: String, _ host: String?) -> URL? {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
-            guard let host else {
+            guard let host = host else {
                 debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
                 return nil
             }
