@@ -32,11 +32,11 @@ let package = Package(
 
 #### Option 2: Adding package dependencies with Xcode
 
-Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift for the url when Xcode asks.
+Use this [guide](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app) to add `aptabase-swift` to your project. Use https://github.com/aptabase/aptabase-swift for the URL when Xcode asks.
 
 #### Option 3: CocoaPods
 
-Aptabase is alsoavailable through CocoaPods. To install it, simply add the following line to your Podfile:
+Aptabase is also available through CocoaPods. To install it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.2.2'
@@ -47,7 +47,7 @@ pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag =
 
 > If you're targeting macOS, you must first enable the `Outgoing Connections (Client)` checkbox under the `App Sandbox` section.
 
-First you need to get your `App Key` from Aptabase, you can find it in the `Instructions` menu on the left side menu.
+First, you need to get your `App Key` from Aptabase, you can find it in the `Instructions` menu on the left side menu.
 
 Initialized the SDK as early as possible in your app, for example:
 
@@ -69,13 +69,13 @@ struct ExampleApp: App {
 }
 ```
 
-Afterwards you can start tracking events with `trackEvent`:
+Afterward, you can start tracking events with `trackEvent`:
 
 ```swift
 import Aptabase
 
-Aptabase.shared.trackEvent("connect_click") // An event with no properties
-Aptabase.shared.trackEvent("play_music", with: ["name": "Here comes the sun"]) // An event with a custom property
+Aptabase.shared.trackEvent("app_started") // An event with no properties
+Aptabase.shared.trackEvent("screen_view", with: ["name": "Settings"]) // An event with a custom property
 ```
 
 A few important notes:
@@ -83,7 +83,7 @@ A few important notes:
 1. The SDK will automatically enhance the event with some useful information, like the OS, the app version, and other things.
 2. You're in control of what gets sent to Aptabase. This SDK does not automatically track any events, you need to call `trackEvent` manually.
    - Because of this, it's generally recommended to at least track an event at startup
-3. The `trackEvent` function is a non-blocking operation as it runs on the background.
+3. The `trackEvent` function is a non-blocking operation as it runs in the background.
 4. Only strings and numbers values are allowed on custom properties
 
 ## Preparing for Submission to Apple App Store
