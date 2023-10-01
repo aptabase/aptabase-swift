@@ -39,10 +39,8 @@ struct EnvironmentInfo {
     }
     
     private static var osName: String {
-        #if os(macOS)
+        #if os(macOS) || targetEnvironment(macCatalyst)
         "macOS"
-        #elseif targetEnvironment(macCatalyst)
-        "macOS (Catalyst)"
 #elseif os(iOS)
         if UIDevice.current.userInterfaceIdiom == .pad {
             return "iPadOS"
