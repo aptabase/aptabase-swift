@@ -39,7 +39,7 @@ struct EnvironmentInfo {
     }
     
     private static var osName: String {
-        #if os(macOS)
+        #if os(macOS) || targetEnvironment(macCatalyst)
         "macOS"
 #elseif os(iOS)
         if UIDevice.current.userInterfaceIdiom == .pad {
@@ -56,7 +56,7 @@ struct EnvironmentInfo {
     }
     
     private static var osVersion: String {
-        #if os(macOS)
+        #if os(macOS) || targetEnvironment(macCatalyst)
         let os = ProcessInfo.processInfo.operatingSystemVersion
         return "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
         #elseif os(iOS)
