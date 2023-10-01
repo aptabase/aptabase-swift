@@ -1,3 +1,7 @@
+## 0.2.3
+
+* support for macOS Catalyst (thanks @manucheri)
+
 ## 0.2.2
 
 * Fix compile issues on Swift 5.6 (thanks @manucheri)
