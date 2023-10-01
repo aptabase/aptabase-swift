@@ -4,7 +4,7 @@ import Aptabase
 @main
 struct HelloWorldApp: App {
     init() {
-        Aptabase.shared.initialize(appKey: "A-DEV-0000000000");
+        Aptabase.shared.initialize(appKey: "A-US-0928558097");
     }
     
     var body: some Scene {
