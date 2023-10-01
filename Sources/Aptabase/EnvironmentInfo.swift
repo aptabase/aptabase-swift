@@ -16,7 +16,7 @@ struct EnvironmentInfo {
     var appVersion = ""
     var appBuildNumber = ""
     
-    static func get() -> EnvironmentInfo {
+    static func current() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
