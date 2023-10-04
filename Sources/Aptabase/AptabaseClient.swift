@@ -13,26 +13,21 @@ internal class AptabaseClient {
     private let flushInterval: Double
     
     init(appKey: String, baseUrl: String, env: EnvironmentInfo, options: InitOptions?) {
-        self.flushInterval = options?.flushInterval ?? (env.isDebug ? 60.0 : 2.0)
+        self.flushInterval = options?.flushInterval ?? (env.isDebug ? 2.0 : 60.0)
         self.env = env
         
         self.dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
     }
     
-    public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        guard JSONSerialization.isValidJSONObject(props) else {
-            debugPrint("Aptabase: unable to serialize custom props. Event will be discarded.")
-            return
-        }
-        
+    public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
         let now = Date()
         if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
             sessionId = UUID()
         }
         lastTouched = now
         
-        let evt = Event(timestamp: dateFormatter.string(from: Date()),
-                        sessionId: sessionId.uuidString,
+        let evt = Event(timestamp: Date(),
+                        sessionId: sessionId,
                         eventName: eventName,
                         systemProps: Event.SystemProps(
                             isDebug: env.isDebug,
@@ -64,12 +59,4 @@ internal class AptabaseClient {
     @objc public func flush() async {
         await dispatcher.flush()
     }
-    
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        return formatter
-    }()
 }

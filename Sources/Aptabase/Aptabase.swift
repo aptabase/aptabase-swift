@@ -54,7 +54,11 @@ public class Aptabase: NSObject {
     ///   - eventName: The name of the event to track.
     ///   - props: Additional given properties.
     public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
-        enqueueEvent(eventName, with: props)
+        guard let codable = toCodableProps(from: props) else {
+            return
+        }
+        
+        enqueueEvent(eventName, with: codable)
     }
     
     /// Initializes the client with given App Key.
@@ -76,7 +80,11 @@ public class Aptabase: NSObject {
     ///   - eventName: The name of the event to track.
     ///   - props: Additional given properties.
     @objc public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        enqueueEvent(eventName, with: props)
+        guard let codable = toCodableProps(from: props) else {
+            return
+        }
+        
+        enqueueEvent(eventName, with: codable)
     }
     
     /// Forces all queued events to be sent to the server
@@ -86,7 +94,7 @@ public class Aptabase: NSObject {
         }
     }
     
-    private func enqueueEvent(_ eventName: String, with props: [String: Any] = [:]) {
+    private func enqueueEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
         guard let client = self.client else {
             return
         }
@@ -113,12 +121,33 @@ public class Aptabase: NSObject {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
             guard let host = host else {
-                debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
+                debugPrint("Aptabase: Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
                 return nil
             }
             baseURL = host
         }
         
         return baseURL
+    }
+    
+    private func toCodableProps(from props: [String: Any]) -> [String: AnyCodableValue]? {
+        var codableProps: [String: AnyCodableValue] = [:]
+        for (key, value) in props {
+            if let intValue = value as? Int {
+                codableProps[key] = .integer(intValue)
+            } else if let doubleValue = value as? Double {
+                codableProps[key] = .double(doubleValue)
+            } else if let stringValue = value as? String {
+                codableProps[key] = .string(stringValue)
+            } else if let floatValue = value as? Float {
+                codableProps[key] = .float(floatValue)
+            } else if let boolValue = value as? Bool {
+                codableProps[key] = .boolean(boolValue)
+            } else {
+                debugPrint("Aptabase: Props with key \(key) has an unsupported value type. Supported types are: String, Int, Double, Float and Boolean. Event will be discarded")
+                return nil
+            }
+        }
+        return codableProps
     }
 }
