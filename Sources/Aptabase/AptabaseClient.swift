@@ -1,15 +1,5 @@
 import Foundation
 
-#if os(iOS)
-import UIKit
-#elseif os(macOS)
-import AppKit
-#elseif os(watchOS)
-import WatchKit
-#elseif os(tvOS)
-import TVUIKit
-#endif
-
 internal class AptabaseClient {
     private static let sdkVersion = "aptabase-swift@0.3.0";
     // Session expires after 1 hour of inactivity
@@ -23,17 +13,14 @@ internal class AptabaseClient {
     private let flushInterval: Double
     
     init(appKey: String, baseUrl: String, env: EnvironmentInfo, options: InitOptions?) {
-        flushInterval = options?.flushInterval ?? (env.isDebug ? 60.0 : 2.0)
+        self.flushInterval = options?.flushInterval ?? (env.isDebug ? 60.0 : 2.0)
+        self.env = env
         
-        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
+        self.dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
     }
     
-    /// Track an event using given properties.
-    /// - Parameters:
-    ///   - eventName: The name of the event to track.
-    ///   - props: Additional given properties.
-    public func trackEvent(_ eventName: String, with props: [String: AnyEncodable] = [:]) {
-        if !JSONSerialization.isValidJSONObject(props) {
+    public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
+        guard JSONSerialization.isValidJSONObject(props) else {
             debugPrint("Aptabase: unable to serialize custom props. Event will be discarded.")
             return
         }
@@ -44,8 +31,8 @@ internal class AptabaseClient {
         }
         lastTouched = now
         
-        let evt = Event(timestamp: Date(),
-                        sessionId: sessionId,
+        let evt = Event(timestamp: dateFormatter.string(from: Date()),
+                        sessionId: sessionId.uuidString,
                         eventName: eventName,
                         systemProps: Event.SystemProps(
                             isDebug: env.isDebug,
@@ -77,4 +64,12 @@ internal class AptabaseClient {
     @objc public func flush() async {
         await dispatcher.flush()
     }
+    
+    private let dateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        formatter.locale = Locale(identifier: "en_US")
+        formatter.timeZone = TimeZone(identifier: "UTC")
+        return formatter
+    }()
 }

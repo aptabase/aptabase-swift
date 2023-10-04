@@ -1,13 +1,13 @@
 import Foundation
 
-struct Event: Encodable {
-    var timestamp: Date
-    var sessionId: UUID
+struct Event {
+    var timestamp: String
+    var sessionId: String
     var eventName: String
     var systemProps: SystemProps
-    var props: [String: AnyEncodable]?
+    var props: [String: Any]?
 
-    struct SystemProps: Encodable {
+    struct SystemProps {
         var isDebug: Bool
         var locale: String
         var osName: String
@@ -77,7 +77,7 @@ public class EventDispatcher {
         }
         
         do {
-            let body = try encoder.encode(events)
+            guard let body = try? JSONSerialization.data(withJSONObject: events[0]) else { return }
             
             var request = URLRequest(url: apiUrl)
             request.httpMethod = "POST"

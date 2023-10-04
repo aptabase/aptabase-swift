@@ -10,42 +10,15 @@ import WatchKit
 import TVUIKit
 #endif
 
-/// Initialization options for the client.
-public final class InitOptions: NSObject {
-    let host: String?
-    let flushInterval: Double?
-    
-    /// - Parameters:
-    ///   - host: The custom host to use. If none provided will use Aptabase's servers.
-    ///   - flushInterval: Defines a custom interval for flushing events.
-    @objc public init(host: String? = nil, flushInterval: NSNumber? = nil) {
-        self.host = host
-        self.flushInterval = flushInterval?.doubleValue
-    }
-}
-
 /// The Aptabase client used to track events.
 public class Aptabase: NSObject {
     private static var sdkVersion = "aptabase-swift@0.3.0";
     
-    // Session expires after 1 hour of inactivity
-    private var sessionTimeout: TimeInterval = 1 * 60 * 60
-    private var sessionId = UUID()
-    private var lastTouched = Date()
     private var env = EnvironmentInfo.current()
-    private var dispatcher: EventDispatcher?
-    private var flushTimer: Timer?
-    private var flushInterval: Int
+    private var client: AptabaseClient?
 
     /// The shared client instance.
     @objc public static let shared = Aptabase()
-    
-    private var hosts = [
-        "US": "https://us.aptabase.com",
-        "EU": "https://eu.aptabase.com",
-        "DEV": "http://localhost:3000",
-        "SH": ""
-    ]
     
     /// Initializes the client with given App Key.
     /// - Parameters:
@@ -58,23 +31,21 @@ public class Aptabase: NSObject {
             return
         }
         
-        guard let baseUrl = getBaseUrl(parts[1], options?.host) else {
+        guard let baseUrl = self.getBaseUrl(parts[1], options?.host) else {
             return
         }
         
-        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
-        let defaultFlushInterval = EnvironmentInfo.isDebug ? 60 : 2
-        flushInterval = options?.flushInterval ?? defaultFlushInterval
+        self.client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
         
         let notifications = NotificationCenter.default
         #if os(tvOS) || os(iOS)
         notifications.addObserver(self, selector: #selector(startPolling), name: UIApplication.willEnterForegroundNotification, object: nil)
-        notifications.addObserver(self, selector: #selector(didEnterBackground), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: UIApplication.didEnterBackgroundNotification, object: nil)
         #elseif os(macOS)
-        notifications.addObserver(self, selector: #selector(didEnterBackground), name: NSApplication.willTerminateNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: NSApplication.willTerminateNotification, object: nil)
         #elseif os(watchOS)
         notifications.addObserver(self, selector: #selector(startPolling), name: WKExtension.applicationWillEnterForegroundNotification, object: nil)
-        notifications.addObserver(self, selector: #selector(didEnterBackground), name: WKExtension.applicationDidEnterBackgroundNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: WKExtension.applicationDidEnterBackgroundNotification, object: nil)
         #endif
     }
     
@@ -82,7 +53,7 @@ public class Aptabase: NSObject {
     /// - Parameters:
     ///   - eventName: The name of the event to track.
     ///   - props: Additional given properties.
-    public func trackEvent(_ eventName: String, with props: [String: AnyEncodable] = [:]) {
+    public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
         enqueueEvent(eventName, with: props)
     }
     
@@ -111,57 +82,32 @@ public class Aptabase: NSObject {
     /// Forces all queued events to be sent to the server
     @objc public func flush() {
         Task {
-            await dispatcher?.flush()
+            await self.client?.flush()
         }
     }
     
     private func enqueueEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        guard let dispatcher = dispatcher else {
+        guard let client = self.client else {
             return
         }
         
-        if !JSONSerialization.isValidJSONObject(props) {
-            debugPrint("Aptabase: unable to serialize custom props. Event will be discarded.")
-            return
-        }
-        
-        let now = Date()
-        if lastTouched.distance(to: now) > sessionTimeout {
-            sessionId = UUID()
-        }
-        lastTouched = now
-        
-        let evt = Event(timestamp: Date(),
-                        sessionId: sessionId,
-                        eventName: eventName,
-                        systemProps: Event.SystemProps(
-                            isDebug: env.isDebug,
-                            locale: env.locale,
-                            osName: env.osName,
-                            osVersion: env.osVersion,
-                            appVersion: env.appVersion,
-                            appBuildNumber: env.appBuildNumber,
-                            sdkVersion: Aptabase.sdkVersion
-                        ))
-        dispatcher.enqueue(evt)
-    }
-    
-    @objc func willEnterForeground() {
-        startPolling()
-    }
-    
-    @objc func didEnterBackground() {
-        flushTimer?.invalidate()
-        flushTimer = nil
-        
-        flush()
+        client.trackEvent(eventName, with: props)
     }
     
     @objc private func startPolling() {
-        flushTimer?.invalidate()
-        flushTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(flush), userInfo: nil, repeats: true)
-        flush()
+        self.client?.startPolling()
     }
+    
+    @objc private func stopPolling() {
+        self.client?.startPolling()
+    }
+    
+    private var hosts = [
+        "US": "https://us.aptabase.com",
+        "EU": "https://eu.aptabase.com",
+        "DEV": "http://localhost:3000",
+        "SH": ""
+    ]
     
     private func getBaseUrl(_ region: String, _ host: String?) -> String? {
         guard var baseURL = hosts[region] else { return nil }
