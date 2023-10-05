@@ -1,3 +1,17 @@
+## 0.3.2
+
+* Dropped support for Swift 5.6
+* Added automated tests for Xcode 14+
+
+## 0.3.1
+
+* Restore support for watchOS 7+
+
+## 0.3.0
+
+* Migrated to new event batching and background flush for tracking, the result is lower resource usage and better support for offline events.
+* Refactor Xcode project and examples
+
 ## 0.2.3
 
 * support for macOS Catalyst (thanks @manucheri)
