@@ -37,26 +37,34 @@ internal class AptabaseClient {
                             appVersion: env.appVersion,
                             appBuildNumber: env.appBuildNumber,
                             sdkVersion: AptabaseClient.sdkVersion
-                        ))
+                        ),
+                        props: props)
         dispatcher.enqueue(evt)
     }
     
     public func startPolling() {
         stopPolling();
         
-        flushTimer = Timer.scheduledTimer(timeInterval: self.flushInterval, target: self, selector: #selector(flush), userInfo: nil, repeats: true)
+        flushTimer = Timer.scheduledTimer(timeInterval: self.flushInterval, target: self, selector: #selector(flushSync), userInfo: nil, repeats: true)
     }
     
     public func stopPolling() {
         flushTimer?.invalidate()
         flushTimer = nil
         
-        Task {
-            await flush()
-        }
+        flushSync()
     }
     
-    @objc public func flush() async {
+    public func flush() async {
         await dispatcher.flush()
+    }
+    
+    @objc private func flushSync() {
+        let semaphore = DispatchSemaphore(value: 0)
+        Task {
+            await self.flush()
+            semaphore.signal()
+        }
+        semaphore.wait()
     }
 }

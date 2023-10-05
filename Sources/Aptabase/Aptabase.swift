@@ -42,6 +42,7 @@ public class Aptabase: NSObject {
         notifications.addObserver(self, selector: #selector(startPolling), name: UIApplication.willEnterForegroundNotification, object: nil)
         notifications.addObserver(self, selector: #selector(stopPolling), name: UIApplication.didEnterBackgroundNotification, object: nil)
         #elseif os(macOS)
+        notifications.addObserver(self, selector: #selector(startPolling), name: NSApplication.didBecomeActiveNotification, object: nil)
         notifications.addObserver(self, selector: #selector(stopPolling), name: NSApplication.willTerminateNotification, object: nil)
         #elseif os(watchOS)
         notifications.addObserver(self, selector: #selector(startPolling), name: WKExtension.applicationWillEnterForegroundNotification, object: nil)
@@ -107,7 +108,7 @@ public class Aptabase: NSObject {
     }
     
     @objc private func stopPolling() {
-        self.client?.startPolling()
+        self.client?.stopPolling()
     }
     
     private var hosts = [
