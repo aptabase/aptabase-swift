@@ -18,9 +18,8 @@
 		E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* CounterView.swift */; };
 		E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEB29DAEF2700204720 /* Assets.xcassets */; };
 		E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */; };
-		E2F0B4592ACECBDE008DFE64 /* aptabase-swift in Resources */ = {isa = PBXBuildFile; fileRef = E2F0B4582ACECBDE008DFE64 /* aptabase-swift */; };
-		E2F0B45B2ACECBF6008DFE64 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2F0B45A2ACECBF6008DFE64 /* Aptabase */; };
-		E2F0B45D2ACECBF9008DFE64 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2F0B45C2ACECBF9008DFE64 /* Aptabase */; };
+		E2536E4E2ACEDE12004B223A /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2536E4D2ACEDE12004B223A /* Aptabase */; };
+		E2536E502ACEDE15004B223A /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2536E4F2ACEDE15004B223A /* Aptabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +40,7 @@
 		E2019AE929DAEF2600204720 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		E2019AEB29DAEF2700204720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E2F0B4582ACECBDE008DFE64 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; sourceTree = "<group>"; };
+		E2536E482ACEDCAE004B223A /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ./; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -49,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F0B45D2ACECBF9008DFE64 /* Aptabase in Frameworks */,
+				E2536E502ACEDE15004B223A /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F0B45B2ACECBF6008DFE64 /* Aptabase in Frameworks */,
+				E2536E4E2ACEDE12004B223A /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -85,7 +84,7 @@
 		E2019ADB29DAEF2600204720 = {
 			isa = PBXGroup;
 			children = (
-				E2F0B4582ACECBDE008DFE64 /* aptabase-swift */,
+				E2536E482ACEDCAE004B223A /* aptabase-swift */,
 				E2F0B44F2ACEC88A008DFE64 /* Examples */,
 				E2019AE529DAEF2600204720 /* Products */,
 				E2019AF729DAF45C00204720 /* Frameworks */,
@@ -153,7 +152,7 @@
 			);
 			name = HelloWorldObjC;
 			packageProductDependencies = (
-				E2F0B45C2ACECBF9008DFE64 /* Aptabase */,
+				E2536E4F2ACEDE15004B223A /* Aptabase */,
 			);
 			productName = HelloWorldObjC;
 			productReference = 7142695D2A409AC5006B491E /* HelloWorldObjC.app */;
@@ -173,7 +172,7 @@
 			);
 			name = HelloWorld;
 			packageProductDependencies = (
-				E2F0B45A2ACECBF6008DFE64 /* Aptabase */,
+				E2536E4D2ACEDE12004B223A /* Aptabase */,
 			);
 			productName = HelloWorld;
 			productReference = E2019AE429DAEF2600204720 /* HelloWorld.app */;
@@ -187,7 +186,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7142695C2A409AC5006B491E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -232,7 +231,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */,
-				E2F0B4592ACECBDE008DFE64 /* aptabase-swift in Resources */,
 				E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +374,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -436,6 +435,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -545,11 +545,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		E2F0B45A2ACECBF6008DFE64 /* Aptabase */ = {
+		E2536E4D2ACEDE12004B223A /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
-		E2F0B45C2ACECBF9008DFE64 /* Aptabase */ = {
+		E2536E4F2ACEDE15004B223A /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
