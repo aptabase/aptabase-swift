@@ -14,12 +14,13 @@
 		7142696C2A409AC6006B491E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7142696B2A409AC6006B491E /* Assets.xcassets */; };
 		7142696F2A409AC6006B491E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7142696D2A409AC6006B491E /* LaunchScreen.storyboard */; };
 		714269722A409AC6006B491E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 714269712A409AC6006B491E /* main.m */; };
-		714269772A409B53006B491E /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = 714269762A409B53006B491E /* Aptabase */; };
 		E2019AE829DAEF2600204720 /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE729DAEF2600204720 /* HelloWorldApp.swift */; };
 		E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* CounterView.swift */; };
 		E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEB29DAEF2700204720 /* Assets.xcassets */; };
 		E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */; };
-		E2019AF929DAF45C00204720 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2019AF829DAF45C00204720 /* Aptabase */; };
+		E2F0B4592ACECBDE008DFE64 /* aptabase-swift in Resources */ = {isa = PBXBuildFile; fileRef = E2F0B4582ACECBDE008DFE64 /* aptabase-swift */; };
+		E2F0B45B2ACECBF6008DFE64 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2F0B45A2ACECBF6008DFE64 /* Aptabase */; };
+		E2F0B45D2ACECBF9008DFE64 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2F0B45C2ACECBF9008DFE64 /* Aptabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +41,7 @@
 		E2019AE929DAEF2600204720 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		E2019AEB29DAEF2700204720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E2019AF629DAF18F00204720 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ..; sourceTree = "<group>"; };
+		E2F0B4582ACECBDE008DFE64 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714269772A409B53006B491E /* Aptabase in Frameworks */,
+				E2F0B45D2ACECBF9008DFE64 /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2019AF929DAF45C00204720 /* Aptabase in Frameworks */,
+				E2F0B45B2ACECBF6008DFE64 /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +85,8 @@
 		E2019ADB29DAEF2600204720 = {
 			isa = PBXGroup;
 			children = (
-				E2019AF529DAF18F00204720 /* Packages */,
-				E2019AE629DAEF2600204720 /* HelloWorld */,
-				7142695E2A409AC5006B491E /* HelloWorldObjC */,
+				E2F0B4582ACECBDE008DFE64 /* aptabase-swift */,
+				E2F0B44F2ACEC88A008DFE64 /* Examples */,
 				E2019AE529DAEF2600204720 /* Products */,
 				E2019AF729DAF45C00204720 /* Frameworks */,
 			);
@@ -120,19 +120,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E2019AF529DAF18F00204720 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				E2019AF629DAF18F00204720 /* aptabase-swift */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		E2019AF729DAF45C00204720 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2F0B44F2ACEC88A008DFE64 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				7142695E2A409AC5006B491E /* HelloWorldObjC */,
+				E2019AE629DAEF2600204720 /* HelloWorld */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +153,7 @@
 			);
 			name = HelloWorldObjC;
 			packageProductDependencies = (
-				714269762A409B53006B491E /* Aptabase */,
+				E2F0B45C2ACECBF9008DFE64 /* Aptabase */,
 			);
 			productName = HelloWorldObjC;
 			productReference = 7142695D2A409AC5006B491E /* HelloWorldObjC.app */;
@@ -172,7 +173,7 @@
 			);
 			name = HelloWorld;
 			packageProductDependencies = (
-				E2019AF829DAF45C00204720 /* Aptabase */,
+				E2F0B45A2ACECBF6008DFE64 /* Aptabase */,
 			);
 			productName = HelloWorld;
 			productReference = E2019AE429DAEF2600204720 /* HelloWorld.app */;
@@ -231,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */,
+				E2F0B4592ACECBDE008DFE64 /* aptabase-swift in Resources */,
 				E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -290,7 +292,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
+				INFOPLIST_FILE = Examples/HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -319,7 +321,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
+				INFOPLIST_FILE = Examples/HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -459,7 +461,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HelloWorld/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorld/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -488,7 +490,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HelloWorld/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorld/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -543,11 +545,11 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		714269762A409B53006B491E /* Aptabase */ = {
+		E2F0B45A2ACECBF6008DFE64 /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
-		E2019AF829DAF45C00204720 /* Aptabase */ = {
+		E2F0B45C2ACECBF9008DFE64 /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
