@@ -45,8 +45,10 @@ public class Aptabase: NSObject {
         notifications.addObserver(self, selector: #selector(startPolling), name: NSApplication.didBecomeActiveNotification, object: nil)
         notifications.addObserver(self, selector: #selector(stopPolling), name: NSApplication.willTerminateNotification, object: nil)
         #elseif os(watchOS)
-        notifications.addObserver(self, selector: #selector(startPolling), name: WKExtension.applicationWillEnterForegroundNotification, object: nil)
-        notifications.addObserver(self, selector: #selector(stopPolling), name: WKExtension.applicationDidEnterBackgroundNotification, object: nil)
+        if #available(watchOS 7.0, *) {
+            notifications.addObserver(self, selector: #selector(startPolling), name: WKExtension.applicationWillEnterForegroundNotification, object: nil)
+            notifications.addObserver(self, selector: #selector(stopPolling), name: WKExtension.applicationDidEnterBackgroundNotification, object: nil)
+        }
         #endif
     }
     
