@@ -13,7 +13,7 @@ jobs:
     strategy:
       matrix:
         platform: [macOS, iOS, tvOS, watchOS]
-        xcode: [^13, ^14, ^15]
+        xcode: [^13, ^14] # ^15
         os: [macos-12, macos-13]
         exclude:
           - xcode: ^15

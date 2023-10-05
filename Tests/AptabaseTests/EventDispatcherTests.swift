@@ -1,9 +1,41 @@
 import XCTest
 @testable import Aptabase
 
+// NOTE: This can be as the URLSessionProtocol should declare the `data` fn when we drop Swift 5.6
+class MockURLSessionDataTask: URLSessionDataTask {
+    private let closure: () -> Void
+
+    init(closure: @escaping () -> Void) {
+        self.closure = closure
+    }
+
+    override func resume() {
+        closure()
+    }
+}
+
+class MockURLSession: URLSessionProtocol {
+    var requestCount: Int = 0
+    var statusCode: Int = 200
+    
+    func dataTask(
+      with request: URLRequest,
+      completionHandler: @escaping DataTaskResult
+    ) -> URLSessionDataTask {
+        requestCount += 1
+        
+        let data = "{}".data(using: .utf8)!
+        let response = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
+        
+        return MockURLSessionDataTask {
+            completionHandler(data, response, nil)
+        }
+    }
+}
+
 final class EventDispatcherTests: XCTestCase {
     var dispatcher: EventDispatcher!
-    var configuration: URLSessionConfiguration!
+    var session: MockURLSession!
     let env = EnvironmentInfo(
         isDebug: true,
         osName: "iOS",
@@ -13,36 +45,31 @@ final class EventDispatcherTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        configuration = {
-            let config = URLSessionConfiguration.ephemeral
-            config.protocolClasses = [MockURLProtocol.self]
-            return config
-        }()
+        session = MockURLSession()
         dispatcher = EventDispatcher(
             appKey: "A-DEV-000",
             baseUrl: "http://localhost:3000",
             env: env,
-            configuration: configuration
+            session: session
         )
     }
 
     override func tearDown() {
         dispatcher = nil
-        configuration = nil
-        MockURLProtocol.reset()
+        session = nil
         super.tearDown()
     }
 
     func testFlushEmptyQueue() async {
         await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 0)
+        XCTAssertEqual(session.requestCount, 0)
     }
     
     func testFlushSingleItem() async {
         dispatcher.enqueue(newEvent("app_started"))
         
         await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 1)
+        XCTAssertEqual(session.requestCount, 1)
     }
     
     func testFlushShouldBatchMultipleItems() async {
@@ -51,10 +78,10 @@ final class EventDispatcherTests: XCTestCase {
         dispatcher.enqueue(newEvent("item_deleted"))
         
         await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 1)
+        XCTAssertEqual(session.requestCount, 1)
         
         await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 1)
+        XCTAssertEqual(session.requestCount, 1)
     }
     
     func testFlushShouldRetryAfterFailure() async {
@@ -62,13 +89,14 @@ final class EventDispatcherTests: XCTestCase {
         dispatcher.enqueue(newEvent("item_created"))
         dispatcher.enqueue(newEvent("item_deleted"))
         
-        MockURLProtocol.responseStatusCode = 500
-        await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 1)
         
-        MockURLProtocol.responseStatusCode = 200
+        session.statusCode = 500
         await dispatcher.flush()
-        XCTAssertEqual(MockURLProtocol.requestCount, 2)
+        XCTAssertEqual(session.requestCount, 1)
+        
+        session.statusCode = 200
+        await dispatcher.flush()
+        XCTAssertEqual(session.requestCount, 2)
     }
     
     private func newEvent(_ eventName: String) -> Event {
