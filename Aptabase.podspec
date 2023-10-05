@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                      = 'Aptabase'
-    s.version                   = '0.2.3'
+    s.version                   = '0.3.2'
     s.summary                   = 'Swift SDK for Aptabase: Open Source, Privacy-First and Simple Analytics for Mobile, Desktop and Web Apps'
     s.homepage                  = 'https://aptabase.com'
     s.license                   = { :type => 'MIT', :file => 'LICENSE' }
