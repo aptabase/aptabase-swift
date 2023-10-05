@@ -16,7 +16,7 @@ struct EnvironmentInfo {
     var appVersion = ""
     var appBuildNumber = ""
     
-    static func get() -> EnvironmentInfo {
+    static func current() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
         
@@ -41,7 +41,7 @@ struct EnvironmentInfo {
     private static var osName: String {
         #if os(macOS) || targetEnvironment(macCatalyst)
         "macOS"
-#elseif os(iOS)
+        #elseif os(iOS)
         if UIDevice.current.userInterfaceIdiom == .pad {
             return "iPadOS"
         }

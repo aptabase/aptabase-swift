@@ -1,44 +1,24 @@
 import Foundation
 
-/// Initialization options for the client.
-public final class InitOptions: NSObject {
-    let host: String?
-
-    /// - Parameter host: The custom host to use. If none provided will use Aptabase's servers.
-    @objc public init(host: String? = nil) {
-        self.host = host
-    }
-}
+#if os(iOS)
+import UIKit
+#elseif os(macOS)
+import AppKit
+#elseif os(watchOS)
+import WatchKit
+#elseif os(tvOS)
+import TVUIKit
+#endif
 
 /// The Aptabase client used to track events.
 public class Aptabase: NSObject {
-    private static var sdkVersion = "aptabase-swift@0.2.3";
+    private static var sdkVersion = "aptabase-swift@0.3.0";
     
-    // Session expires after 1 hour of inactivity
-    private var sessionTimeout: TimeInterval = 1 * 60 * 60
-    private var appKey: String?
-    private var sessionId = UUID()
-    private var env: EnvironmentInfo?
-    private var lastTouched = Date()
-    private var apiURL: URL?
+    private var env = EnvironmentInfo.current()
+    private var client: AptabaseClient?
 
     /// The shared client instance.
     @objc public static let shared = Aptabase()
-    
-    private var hosts = [
-        "US": "https://us.aptabase.com",
-        "EU": "https://eu.aptabase.com",
-        "DEV": "http://localhost:3000",
-        "SH": ""
-    ]
-
-    private let dateFormatter: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        return formatter
-    }()
     
     /// Initializes the client with given App Key.
     /// - Parameters:
@@ -51,9 +31,23 @@ public class Aptabase: NSObject {
             return
         }
         
-        apiURL = getApiUrl(parts[1], options?.host)
-        self.appKey = appKey
-        env = EnvironmentInfo.get()
+        guard let baseUrl = self.getBaseUrl(parts[1], options?.host) else {
+            return
+        }
+        
+        self.client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
+        
+        let notifications = NotificationCenter.default
+        #if os(tvOS) || os(iOS)
+        notifications.addObserver(self, selector: #selector(startPolling), name: UIApplication.willEnterForegroundNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: UIApplication.didEnterBackgroundNotification, object: nil)
+        #elseif os(macOS)
+        notifications.addObserver(self, selector: #selector(startPolling), name: NSApplication.didBecomeActiveNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: NSApplication.willTerminateNotification, object: nil)
+        #elseif os(watchOS)
+        notifications.addObserver(self, selector: #selector(startPolling), name: WKExtension.applicationWillEnterForegroundNotification, object: nil)
+        notifications.addObserver(self, selector: #selector(stopPolling), name: WKExtension.applicationDidEnterBackgroundNotification, object: nil)
+        #endif
     }
     
     /// Track an event using given properties.
@@ -61,7 +55,11 @@ public class Aptabase: NSObject {
     ///   - eventName: The name of the event to track.
     ///   - props: Additional given properties.
     public func trackEvent(_ eventName: String, with props: [String: Value] = [:]) {
-        sendEvent(eventName, with: props)
+        guard let codable = toCodableProps(from: props) else {
+            return
+        }
+        
+        enqueueEvent(eventName, with: codable)
     }
     
     /// Initializes the client with given App Key.
@@ -83,78 +81,74 @@ public class Aptabase: NSObject {
     ///   - eventName: The name of the event to track.
     ///   - props: Additional given properties.
     @objc public func trackEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        sendEvent(eventName, with: props)
+        guard let codable = toCodableProps(from: props) else {
+            return
+        }
+        
+        enqueueEvent(eventName, with: codable)
     }
     
-    private func sendEvent(_ eventName: String, with props: [String: Any] = [:]) {
-        DispatchQueue(label: "com.aptabase.aptabase").async { [self] in
-            guard let appKey = appKey, let env = env, let apiURL = apiURL else {
-                return
-            }
-            
-            let now = Date()
-            if lastTouched.distance(to: now) > sessionTimeout {
-                sessionId = UUID()
-            }
-            
-            lastTouched = now
-
-            let body: [String: Any] = [
-                "timestamp": dateFormatter.string(from: Date()),
-                "sessionId": sessionId.uuidString.lowercased(),
-                "eventName": eventName,
-                "systemProps": [
-                    "isDebug": env.isDebug,
-                    "osName": env.osName,
-                    "osVersion": env.osVersion,
-                    "locale": env.locale,
-                    "appVersion": env.appVersion,
-                    "appBuildNumber": env.appBuildNumber,
-                    "sdkVersion": Aptabase.sdkVersion
-                ] as [String : Any],
-                "props": props
-            ]
-            
-            if !JSONSerialization.isValidJSONObject(props) {
-                debugPrint("Aptabase: unable to serialize custom props. Event will be discarded.")
-                return
-            }
-            
-            guard let body = try? JSONSerialization.data(withJSONObject: body) else { return }
-
-            var request = URLRequest(url: apiURL)
-            request.httpBody = body
-            request.httpMethod = "POST"
-            request.addValue(appKey, forHTTPHeaderField: "App-Key")
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    debugPrint(error?.localizedDescription ?? "unknown error")
-                    return
-                }
-                
-                if let response = response as? HTTPURLResponse,
-                   let body = String(data: data, encoding: .utf8),
-                   response.statusCode >= 300 {
-                    debugPrint("trackEvent failed with status code \(response.statusCode): \(body)")
-                }
-            }
-
-            task.resume()
+    /// Forces all queued events to be sent to the server
+    @objc public func flush() {
+        Task {
+            await self.client?.flush()
         }
     }
     
-    private func getApiUrl(_ region: String, _ host: String?) -> URL? {
+    private func enqueueEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
+        guard let client = self.client else {
+            return
+        }
+        
+        client.trackEvent(eventName, with: props)
+    }
+    
+    @objc private func startPolling() {
+        self.client?.startPolling()
+    }
+    
+    @objc private func stopPolling() {
+        self.client?.stopPolling()
+    }
+    
+    private var hosts = [
+        "US": "https://us.aptabase.com",
+        "EU": "https://eu.aptabase.com",
+        "DEV": "http://localhost:3000",
+        "SH": ""
+    ]
+    
+    private func getBaseUrl(_ region: String, _ host: String?) -> String? {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
             guard let host = host else {
-                debugPrint("Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
+                debugPrint("Aptabase: Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
                 return nil
             }
             baseURL = host
         }
         
-        return URL(string: "\(baseURL)/api/v0/event")
+        return baseURL
+    }
+    
+    private func toCodableProps(from props: [String: Any]) -> [String: AnyCodableValue]? {
+        var codableProps: [String: AnyCodableValue] = [:]
+        for (key, value) in props {
+            if let intValue = value as? Int {
+                codableProps[key] = .integer(intValue)
+            } else if let doubleValue = value as? Double {
+                codableProps[key] = .double(doubleValue)
+            } else if let stringValue = value as? String {
+                codableProps[key] = .string(stringValue)
+            } else if let floatValue = value as? Float {
+                codableProps[key] = .float(floatValue)
+            } else if let boolValue = value as? Bool {
+                codableProps[key] = .boolean(boolValue)
+            } else {
+                debugPrint("Aptabase: Props with key \(key) has an unsupported value type. Supported types are: String, Int, Double, Float and Boolean. Event will be discarded")
+                return nil
+            }
+        }
+        return codableProps
     }
 }
