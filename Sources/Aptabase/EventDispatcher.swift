@@ -18,16 +18,11 @@ struct Event: Encodable {
     }
 }
 
-typealias DataTaskResult = @Sendable (Data?, URLResponse?, Error?) -> Void
-
 protocol URLSessionProtocol {
-  func dataTask(
-    with request: URLRequest, 
-    completionHandler: @escaping DataTaskResult
-  ) -> URLSessionDataTask
+    func data(for: URLRequest) async throws -> (Data, URLResponse)
 }
 
-extension URLSession : URLSessionProtocol{}
+extension URLSession: URLSessionProtocol {}
 
 public class EventDispatcher {
     private var events = ConcurrentQueue<Event>()
@@ -88,7 +83,7 @@ public class EventDispatcher {
             request.allHTTPHeaderFields = headers
             request.httpBody = body
             
-            let (data, response) = try await Post(for: request)
+            let (data, response) = try await session.data(for: request)
             let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
             if (statusCode < 300) {
                 return
@@ -106,22 +101,6 @@ public class EventDispatcher {
         } catch {
             debugPrint("Aptabase: Failed to send \(events.count) events. Reason: \(error)")
             throw error
-        }
-    }
-    
-    // NOTE: This can be replaced by the new async `session.data` when we drop Swift 5.6
-    private func Post(for request: URLRequest) async throws -> (Data, URLResponse) {
-        try await withCheckedThrowingContinuation { continuation in
-            let task = self.session.dataTask(with: request) { data, response, error in
-                guard let data = data, let response = response else {
-                    let error = error ?? URLError(.badServerResponse)
-                    return continuation.resume(throwing: error)
-                }
-
-                continuation.resume(returning: (data, response))
-            }
-
-            task.resume()
         }
     }
     

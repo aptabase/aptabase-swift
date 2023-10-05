@@ -1,35 +1,16 @@
 import XCTest
 @testable import Aptabase
 
-// NOTE: This can be as the URLSessionProtocol should declare the `data` fn when we drop Swift 5.6
-class MockURLSessionDataTask: URLSessionDataTask {
-    private let closure: () -> Void
-
-    init(closure: @escaping () -> Void) {
-        self.closure = closure
-    }
-
-    override func resume() {
-        closure()
-    }
-}
-
 class MockURLSession: URLSessionProtocol {
     var requestCount: Int = 0
     var statusCode: Int = 200
     
-    func dataTask(
-      with request: URLRequest,
-      completionHandler: @escaping DataTaskResult
-    ) -> URLSessionDataTask {
+    func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         requestCount += 1
         
         let data = "{}".data(using: .utf8)!
         let response = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
-        
-        return MockURLSessionDataTask {
-            completionHandler(data, response, nil)
-        }
+        return (data, response)
     }
 }
 
