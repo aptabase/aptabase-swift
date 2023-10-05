@@ -26,12 +26,13 @@ jobs:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
           action: build
-          configuration: release
+          configuration: debug
+          scheme: Aptabase
 
       - uses: mxcl/xcodebuild@v1
         with:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
           action: test
-          configuration: release
+          configuration: debug
           scheme: AptabaseTests
