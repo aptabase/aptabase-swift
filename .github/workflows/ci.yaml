@@ -17,7 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: mxcl/xcodebuild@v1
+      - name: Xcode Build
+        uses: mxcl/xcodebuild@v1
         with:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
@@ -25,7 +26,8 @@ jobs:
           configuration: debug
           scheme: Aptabase
 
-      - uses: mxcl/xcodebuild@v1
+      - name: Xcode Test
+        uses: mxcl/xcodebuild@v1
         with:
           xcode: ${{ matrix.xcode }}
           platform: ${{ matrix.platform }}
