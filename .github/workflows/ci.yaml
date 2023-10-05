@@ -8,20 +8,29 @@ on:
 
 jobs:
   build:
-    name: Swift ${{ matrix.swift }}
-    runs-on: macos-latest
+    name: ${{ matrix.platform }} on Xcode ${{ matrix.xcode }}
+    runs-on: macos-13
     strategy:
       matrix:
-        swift: ["5.6", "5.7", "5.8", "5.9"]
+        platform: [macOS, iOS, tvOS, watchOS]
+        xcode: [^14] # ^15
     steps:
       - uses: actions/checkout@v4
-      
-      - uses: swift-actions/setup-swift@v1
+
+      - name: Xcode Build
+        uses: mxcl/xcodebuild@v1
         with:
-          swift-version: ${{ matrix.swift }}
+          xcode: ${{ matrix.xcode }}
+          platform: ${{ matrix.platform }}
+          action: build
+          configuration: debug
+          scheme: Aptabase
 
-      - name: Build
-        run: swift build
-
-      - name: Run tests
-        run: swift test
+      - name: Xcode Test
+        uses: mxcl/xcodebuild@v1
+        with:
+          xcode: ${{ matrix.xcode }}
+          platform: ${{ matrix.platform }}
+          action: test
+          configuration: debug
+          scheme: AptabaseTests

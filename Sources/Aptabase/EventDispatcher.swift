@@ -24,7 +24,6 @@ protocol URLSessionProtocol {
 
 extension URLSession: URLSessionProtocol {}
 
-
 public class EventDispatcher {
     private var events = ConcurrentQueue<Event>()
     private let MAX_BATCH_SIZE = 25
