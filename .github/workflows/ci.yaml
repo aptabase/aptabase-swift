@@ -12,18 +12,12 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        platform:
-          - macOS
-          - watchOS
-          - tvOS
-          - iOS
+        platform: [macOS, iOS, tvOS, watchOS]
+        xcode: [^14, ^15]
+        os: [macos-13]
         include:
           - xcode: ^13
             os: "macos-12"
-          - xcode: ^14
-            os: "macos-13"
-          - xcode: ^15
-            os: "macos-13"
     steps:
       - uses: actions/checkout@v4
 
@@ -40,3 +34,4 @@ jobs:
           platform: ${{ matrix.platform }}
           action: test
           configuration: release
+          scheme: AptabaseTests
