@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Platform ${{ matrix.platform }} on Xcode ${{ matrix.xcode }} + ${{ matrix.os }}
+    name: ${{ matrix.platform }} on Xcode ${{ matrix.xcode }} (${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
