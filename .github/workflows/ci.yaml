@@ -8,8 +8,8 @@ on:
 
 jobs:
   build:
-    name: Swift ${{ matrix.swift }}
-    runs-on: macos-latest
+    name: Swift ${{ matrix.swift }} on ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         include:
