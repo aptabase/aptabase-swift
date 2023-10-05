@@ -14,12 +14,17 @@
 		7142696C2A409AC6006B491E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7142696B2A409AC6006B491E /* Assets.xcassets */; };
 		7142696F2A409AC6006B491E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7142696D2A409AC6006B491E /* LaunchScreen.storyboard */; };
 		714269722A409AC6006B491E /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 714269712A409AC6006B491E /* main.m */; };
-		714269772A409B53006B491E /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = 714269762A409B53006B491E /* Aptabase */; };
 		E2019AE829DAEF2600204720 /* HelloWorldApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE729DAEF2600204720 /* HelloWorldApp.swift */; };
 		E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2019AE929DAEF2600204720 /* CounterView.swift */; };
 		E2019AEC29DAEF2700204720 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEB29DAEF2700204720 /* Assets.xcassets */; };
 		E2019AEF29DAEF2700204720 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */; };
-		E2019AF929DAF45C00204720 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2019AF829DAF45C00204720 /* Aptabase */; };
+		E2536E4E2ACEDE12004B223A /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2536E4D2ACEDE12004B223A /* Aptabase */; };
+		E2536E502ACEDE15004B223A /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2536E4F2ACEDE15004B223A /* Aptabase */; };
+		E2AB50142ACEE17B00550570 /* HelloWorldMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB50132ACEE17B00550570 /* HelloWorldMacApp.swift */; };
+		E2AB50162ACEE17B00550570 /* CounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2AB50152ACEE17B00550570 /* CounterView.swift */; };
+		E2AB50182ACEE17C00550570 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AB50172ACEE17C00550570 /* Assets.xcassets */; };
+		E2AB501B2ACEE17C00550570 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E2AB501A2ACEE17C00550570 /* Preview Assets.xcassets */; };
+		E2AB50212ACEE1BF00550570 /* Aptabase in Frameworks */ = {isa = PBXBuildFile; productRef = E2AB50202ACEE1BF00550570 /* Aptabase */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +45,13 @@
 		E2019AE929DAEF2600204720 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
 		E2019AEB29DAEF2700204720 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E2019AEE29DAEF2700204720 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E2019AF629DAF18F00204720 /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ..; sourceTree = "<group>"; };
+		E2536E482ACEDCAE004B223A /* aptabase-swift */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "aptabase-swift"; path = ./; sourceTree = "<group>"; };
+		E2AB50112ACEE17B00550570 /* HelloWorldMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HelloWorldMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2AB50132ACEE17B00550570 /* HelloWorldMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelloWorldMacApp.swift; sourceTree = "<group>"; };
+		E2AB50152ACEE17B00550570 /* CounterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterView.swift; sourceTree = "<group>"; };
+		E2AB50172ACEE17C00550570 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E2AB501A2ACEE17C00550570 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E2AB501C2ACEE17C00550570 /* HelloWorldMac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HelloWorldMac.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714269772A409B53006B491E /* Aptabase in Frameworks */,
+				E2536E502ACEDE15004B223A /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,7 +67,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2019AF929DAF45C00204720 /* Aptabase in Frameworks */,
+				E2536E4E2ACEDE12004B223A /* Aptabase in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2AB500E2ACEE17B00550570 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AB50212ACEE1BF00550570 /* Aptabase in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,9 +103,8 @@
 		E2019ADB29DAEF2600204720 = {
 			isa = PBXGroup;
 			children = (
-				E2019AF529DAF18F00204720 /* Packages */,
-				E2019AE629DAEF2600204720 /* HelloWorld */,
-				7142695E2A409AC5006B491E /* HelloWorldObjC */,
+				E2536E482ACEDCAE004B223A /* aptabase-swift */,
+				E2F0B44F2ACEC88A008DFE64 /* Examples */,
 				E2019AE529DAEF2600204720 /* Products */,
 				E2019AF729DAF45C00204720 /* Frameworks */,
 			);
@@ -97,6 +115,7 @@
 			children = (
 				E2019AE429DAEF2600204720 /* HelloWorld.app */,
 				7142695D2A409AC5006B491E /* HelloWorldObjC.app */,
+				E2AB50112ACEE17B00550570 /* HelloWorldMac.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -120,19 +139,41 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		E2019AF529DAF18F00204720 /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				E2019AF629DAF18F00204720 /* aptabase-swift */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
 		E2019AF729DAF45C00204720 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E2AB50122ACEE17B00550570 /* HelloWorldMac */ = {
+			isa = PBXGroup;
+			children = (
+				E2AB50132ACEE17B00550570 /* HelloWorldMacApp.swift */,
+				E2AB50152ACEE17B00550570 /* CounterView.swift */,
+				E2AB50172ACEE17C00550570 /* Assets.xcassets */,
+				E2AB501C2ACEE17C00550570 /* HelloWorldMac.entitlements */,
+				E2AB50192ACEE17C00550570 /* Preview Content */,
+			);
+			path = HelloWorldMac;
+			sourceTree = "<group>";
+		};
+		E2AB50192ACEE17C00550570 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				E2AB501A2ACEE17C00550570 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E2F0B44F2ACEC88A008DFE64 /* Examples */ = {
+			isa = PBXGroup;
+			children = (
+				E2AB50122ACEE17B00550570 /* HelloWorldMac */,
+				7142695E2A409AC5006B491E /* HelloWorldObjC */,
+				E2019AE629DAEF2600204720 /* HelloWorld */,
+			);
+			path = Examples;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -152,7 +193,7 @@
 			);
 			name = HelloWorldObjC;
 			packageProductDependencies = (
-				714269762A409B53006B491E /* Aptabase */,
+				E2536E4F2ACEDE15004B223A /* Aptabase */,
 			);
 			productName = HelloWorldObjC;
 			productReference = 7142695D2A409AC5006B491E /* HelloWorldObjC.app */;
@@ -172,10 +213,30 @@
 			);
 			name = HelloWorld;
 			packageProductDependencies = (
-				E2019AF829DAF45C00204720 /* Aptabase */,
+				E2536E4D2ACEDE12004B223A /* Aptabase */,
 			);
 			productName = HelloWorld;
 			productReference = E2019AE429DAEF2600204720 /* HelloWorld.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2AB50102ACEE17B00550570 /* HelloWorldMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2AB501D2ACEE17C00550570 /* Build configuration list for PBXNativeTarget "HelloWorldMac" */;
+			buildPhases = (
+				E2AB500D2ACEE17B00550570 /* Sources */,
+				E2AB500E2ACEE17B00550570 /* Frameworks */,
+				E2AB500F2ACEE17B00550570 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HelloWorldMac;
+			packageProductDependencies = (
+				E2AB50202ACEE1BF00550570 /* Aptabase */,
+			);
+			productName = HelloWorldMac;
+			productReference = E2AB50112ACEE17B00550570 /* HelloWorldMac.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -185,8 +246,8 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1420;
-				LastUpgradeCheck = 1420;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
 				TargetAttributes = {
 					7142695C2A409AC5006B491E = {
 						CreatedOnToolsVersion = 14.3.1;
@@ -194,9 +255,12 @@
 					E2019AE329DAEF2600204720 = {
 						CreatedOnToolsVersion = 14.2;
 					};
+					E2AB50102ACEE17B00550570 = {
+						CreatedOnToolsVersion = 15.0;
+					};
 				};
 			};
-			buildConfigurationList = E2019ADF29DAEF2600204720 /* Build configuration list for PBXProject "HelloWorld" */;
+			buildConfigurationList = E2019ADF29DAEF2600204720 /* Build configuration list for PBXProject "Aptabase" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -211,6 +275,7 @@
 			targets = (
 				E2019AE329DAEF2600204720 /* HelloWorld */,
 				7142695C2A409AC5006B491E /* HelloWorldObjC */,
+				E2AB50102ACEE17B00550570 /* HelloWorldMac */,
 			);
 		};
 /* End PBXProject section */
@@ -235,6 +300,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E2AB500F2ACEE17B00550570 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AB501B2ACEE17C00550570 /* Preview Assets.xcassets in Resources */,
+				E2AB50182ACEE17C00550570 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -255,6 +329,15 @@
 			files = (
 				E2019AEA29DAEF2600204720 /* CounterView.swift in Sources */,
 				E2019AE829DAEF2600204720 /* HelloWorldApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2AB500D2ACEE17B00550570 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E2AB50162ACEE17B00550570 /* CounterView.swift in Sources */,
+				E2AB50142ACEE17B00550570 /* HelloWorldMacApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +373,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
+				INFOPLIST_FILE = Examples/HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -319,7 +402,7 @@
 				DEVELOPMENT_ASSET_PATHS = "";
 				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = HelloWorldObjC/Info.plist;
+				INFOPLIST_FILE = Examples/HelloWorldObjC/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -374,6 +457,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -434,6 +518,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -459,7 +544,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HelloWorld/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorld/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -488,7 +573,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"HelloWorld/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorld/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -510,6 +595,67 @@
 			};
 			name = Release;
 		};
+		E2AB501E2ACEE17C00550570 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Examples/HelloWorldMac/HelloWorldMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorldMac/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aptabase.HelloWorldMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		E2AB501F2ACEE17C00550570 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Examples/HelloWorldMac/HelloWorldMac.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"Examples/HelloWorldMac/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.aptabase.HelloWorldMac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -522,7 +668,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E2019ADF29DAEF2600204720 /* Build configuration list for PBXProject "HelloWorld" */ = {
+		E2019ADF29DAEF2600204720 /* Build configuration list for PBXProject "Aptabase" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E2019AF029DAEF2700204720 /* Debug */,
@@ -540,14 +686,27 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E2AB501D2ACEE17C00550570 /* Build configuration list for PBXNativeTarget "HelloWorldMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2AB501E2ACEE17C00550570 /* Debug */,
+				E2AB501F2ACEE17C00550570 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		714269762A409B53006B491E /* Aptabase */ = {
+		E2536E4D2ACEDE12004B223A /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
-		E2019AF829DAF45C00204720 /* Aptabase */ = {
+		E2536E4F2ACEDE15004B223A /* Aptabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Aptabase;
+		};
+		E2AB50202ACEE1BF00550570 /* Aptabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Aptabase;
 		};
