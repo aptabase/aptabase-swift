@@ -19,7 +19,7 @@ struct Event: Encodable {
 }
 
 protocol URLSessionProtocol {
-    func data(for request: URLRequest) async throws -> (Data, URLResponse)
+    func data(for: URLRequest) async throws -> (Data, URLResponse)
 }
 
 extension URLSession: URLSessionProtocol {}
