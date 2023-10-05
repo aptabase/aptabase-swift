@@ -18,29 +18,21 @@ struct Event: Encodable {
     }
 }
 
-typealias DataTaskResult = @Sendable (Data?, URLResponse?, Error?) -> Void
-
-protocol URLSessionProtocol {
-    func dataTask(with request: URLRequest, completionHandler: @escaping DataTaskResult) -> URLSessionDataTask
-}
-
-extension URLSession: URLSessionProtocol {}
-
 public class EventDispatcher {
     private var events = ConcurrentQueue<Event>()
     private let MAX_BATCH_SIZE = 25
     private let headers: [String: String]
     private let apiUrl: URL
-    private let session: URLSessionProtocol
+    private let session: URLSession
 
-    init(appKey: String, baseUrl: String, env: EnvironmentInfo, session: URLSessionProtocol = URLSession.shared) {
-        self.session = session
+    init(appKey: String, baseUrl: String, env: EnvironmentInfo, configuration: URLSessionConfiguration = .ephemeral) {
         self.apiUrl = URL(string: "\(baseUrl)/api/v0/events")!
         self.headers = [
             "Content-Type": "application/json",
             "App-Key": appKey,
             "User-Agent": "\(env.osName)/\(env.osVersion) \(env.locale)"
         ]
+        self.session = URLSession(configuration: configuration)
     }
 
     func enqueue(_ newEvent: Event) {
