@@ -1,3 +1,7 @@
+## 0.3.3
+
+* Added Privacy Manifest (PrivacyInfo.xcprivacy)
+
 ## 0.3.2
 
 * Dropped support for Swift 5.6

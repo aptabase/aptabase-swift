@@ -12,8 +12,6 @@ import TVUIKit
 
 /// The Aptabase client used to track events.
 public class Aptabase: NSObject {
-    private static var sdkVersion = "aptabase-swift@0.3.2";
-    
     private var env = EnvironmentInfo.current()
     private var client: AptabaseClient?
 
