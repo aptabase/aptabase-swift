@@ -17,7 +17,7 @@ public class Aptabase: NSObject {
 
     /// The shared client instance.
     @objc public static let shared = Aptabase()
-    
+
     /// Initializes the client with given App Key.
     /// - Parameters:
     ///   - appKey: The App Key to use.
@@ -28,13 +28,13 @@ public class Aptabase: NSObject {
             debugPrint("The Aptabase App Key \(appKey) is invalid. Tracking will be disabled.")
             return
         }
-        
-        guard let baseUrl = self.getBaseUrl(parts[1], options?.host) else {
+
+        guard let baseUrl = getBaseUrl(parts[1], options?.host) else {
             return
         }
-        
-        self.client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
-        
+
+        client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
+
         let notifications = NotificationCenter.default
         #if os(tvOS) || os(iOS)
         notifications.addObserver(self, selector: #selector(startPolling), name: UIApplication.willEnterForegroundNotification, object: nil)
@@ -49,7 +49,7 @@ public class Aptabase: NSObject {
         }
         #endif
     }
-    
+
     /// Track an event using given properties.
     /// - Parameters:
     ///   - eventName: The name of the event to track.
@@ -58,10 +58,10 @@ public class Aptabase: NSObject {
         guard let codable = toCodableProps(from: props) else {
             return
         }
-        
+
         enqueueEvent(eventName, with: codable)
     }
-    
+
     /// Initializes the client with given App Key.
     /// - Parameter appKey: The App Key to use.
     @objc public func initialize(appKey: String) {
@@ -75,7 +75,7 @@ public class Aptabase: NSObject {
     @objc public func initialize(appKey: String, options: InitOptions?) {
         initialize(appKey: appKey, with: options)
     }
-    
+
     /// Track an event using given properties.
     /// - Parameters:
     ///   - eventName: The name of the event to track.
@@ -84,53 +84,53 @@ public class Aptabase: NSObject {
         guard let codable = toCodableProps(from: props) else {
             return
         }
-        
+
         enqueueEvent(eventName, with: codable)
     }
-    
+
     /// Forces all queued events to be sent to the server
     @objc public func flush() {
         Task {
             await self.client?.flush()
         }
     }
-    
+
     private func enqueueEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
-        guard let client = self.client else {
+        guard let client else {
             return
         }
-        
+
         client.trackEvent(eventName, with: props)
     }
-    
+
     @objc private func startPolling() {
-        self.client?.startPolling()
+        client?.startPolling()
     }
-    
+
     @objc private func stopPolling() {
-        self.client?.stopPolling()
+        client?.stopPolling()
     }
-    
+
     private var hosts = [
         "US": "https://us.aptabase.com",
         "EU": "https://eu.aptabase.com",
         "DEV": "http://localhost:3000",
         "SH": ""
     ]
-    
+
     private func getBaseUrl(_ region: String, _ host: String?) -> String? {
         guard var baseURL = hosts[region] else { return nil }
         if region == "SH" {
-            guard let host = host else {
+            guard let host else {
                 debugPrint("Aptabase: Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
                 return nil
             }
             baseURL = host
         }
-        
+
         return baseURL
     }
-    
+
     private func toCodableProps(from props: [String: Any]) -> [String: AnyCodableValue]? {
         var codableProps: [String: AnyCodableValue] = [:]
         for (key, value) in props {

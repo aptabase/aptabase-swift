@@ -15,11 +15,11 @@ struct EnvironmentInfo {
     var locale = ""
     var appVersion = ""
     var appBuildNumber = ""
-    
+
     static func current() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
         let appBuildNumber = Bundle.main.infoDictionary?["CFBundleVersion"] as? String
-        
+
         return EnvironmentInfo(
             isDebug: isDebug,
             osName: osName,
@@ -29,7 +29,7 @@ struct EnvironmentInfo {
             appBuildNumber: appBuildNumber ?? ""
         )
     }
-    
+
     private static var isDebug: Bool {
         #if DEBUG
         true
@@ -37,7 +37,7 @@ struct EnvironmentInfo {
         false
         #endif
     }
-    
+
     private static var osName: String {
         #if os(macOS) || targetEnvironment(macCatalyst)
         "macOS"
@@ -54,7 +54,7 @@ struct EnvironmentInfo {
         ""
         #endif
     }
-    
+
     private static var osVersion: String {
         #if os(macOS) || targetEnvironment(macCatalyst)
         let os = ProcessInfo.processInfo.operatingSystemVersion

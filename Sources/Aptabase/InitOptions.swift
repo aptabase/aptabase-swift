@@ -4,7 +4,7 @@ import Foundation
 public final class InitOptions: NSObject {
     let host: String?
     let flushInterval: Double?
-    
+
     /// - Parameters:
     ///   - host: The custom host to use. If none provided will use Aptabase's servers.
     ///   - flushInterval: Defines a custom interval for flushing events.
