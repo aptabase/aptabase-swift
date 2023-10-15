@@ -26,15 +26,15 @@ extension URLSession: URLSessionProtocol {}
 
 public class EventDispatcher {
     private var events = ConcurrentQueue<Event>()
-    private let MAX_BATCH_SIZE = 25
+    private let maximumBatchSize = 25
     private let headers: [String: String]
     private let apiUrl: URL
     private let session: URLSessionProtocol
 
     init(appKey: String, baseUrl: String, env: EnvironmentInfo, session: URLSessionProtocol = URLSession.shared) {
         self.session = session
-        self.apiUrl = URL(string: "\(baseUrl)/api/v0/events")!
-        self.headers = [
+        apiUrl = URL(string: "\(baseUrl)/api/v0/events")!
+        headers = [
             "Content-Type": "application/json",
             "App-Key": appKey,
             "User-Agent": "\(env.osName)/\(env.osVersion) \(env.locale)"
@@ -55,9 +55,8 @@ public class EventDispatcher {
         }
 
         var failedEvents: [Event] = []
-        while (!events.isEmpty)
-        {
-            let eventsToSend = events.dequeue(count: MAX_BATCH_SIZE)
+        while !events.isEmpty {
+            let eventsToSend = events.dequeue(count: maximumBatchSize)
             do {
                 try await sendEvents(eventsToSend)
             } catch {
@@ -74,24 +73,24 @@ public class EventDispatcher {
         if events.isEmpty {
             return
         }
-        
+
         do {
             let body = try encoder.encode(events)
-            
+
             var request = URLRequest(url: apiUrl)
             request.httpMethod = "POST"
             request.allHTTPHeaderFields = headers
             request.httpBody = body
-            
+
             let (data, response) = try await session.data(for: request)
             let statusCode = (response as? HTTPURLResponse)?.statusCode ?? 0
-            if (statusCode < 300) {
+            if statusCode < 300 {
                 return
             }
-            
-            let responseText = String(data: data , encoding: .utf8) ?? ""
+
+            let responseText = String(data: data, encoding: .utf8) ?? ""
             let reason = "\(statusCode) \(responseText)"
-            
+
             if statusCode < 500 {
                 debugPrint("Aptabase: Failed to send \(events.count) events because of \(reason). Will not retry.")
                 return
@@ -103,7 +102,7 @@ public class EventDispatcher {
             throw error
         }
     }
-    
+
     private var encoder: JSONEncoder = {
         let encoder = JSONEncoder()
         let formatter = DateFormatter()

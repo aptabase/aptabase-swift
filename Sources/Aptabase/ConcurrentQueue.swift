@@ -29,7 +29,7 @@ class ConcurrentQueue<T> {
     func dequeue(count: Int) -> [T] {
         var dequeuedElements = [T]()
         queue.sync {
-            for _ in 0..<min(count, self.elements.count) {
+            for _ in 0 ..< min(count, self.elements.count) {
                 dequeuedElements.append(self.elements.removeFirst())
             }
         }
