@@ -1,11 +1,11 @@
 import Foundation
 
 class AptabaseClient {
-    private static let sdkVersion = "aptabase-swift@0.3.3"
+    private static let sdkVersion = "aptabase-swift@0.3.4"
     // Session expires after 1 hour of inactivity
     private static let sessionTimeout: TimeInterval = 1 * 60 * 60
 
-    private var sessionId = UUID()
+    private var sessionId = newSessionId()
     private var lastTouched = Date()
     private var flushTimer: Timer?
     private let dispatcher: EventDispatcher
@@ -22,7 +22,7 @@ class AptabaseClient {
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
         let now = Date()
         if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
-            sessionId = UUID()
+            sessionId = AptabaseClient.newSessionId()
         }
         lastTouched = now
 
@@ -57,6 +57,12 @@ class AptabaseClient {
 
     public func flush() async {
         await dispatcher.flush()
+    }
+    
+    private static func newSessionId() -> String {
+        let epochInSeconds = UInt64(Date().timeIntervalSince1970)
+        let random = UInt64.random(in: 0...99999999)
+        return String(epochInSeconds * 100000000 + random)
     }
 
     @objc private func flushSync() {

@@ -1,3 +1,7 @@
+## 0.3.4
+
+* Use new session id format
+
 ## 0.3.3
 
 * Added Privacy Manifest (PrivacyInfo.xcprivacy)

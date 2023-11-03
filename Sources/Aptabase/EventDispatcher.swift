@@ -2,7 +2,7 @@ import Foundation
 
 struct Event: Encodable {
     var timestamp: Date
-    var sessionId: UUID
+    var sessionId: String
     var eventName: String
     var systemProps: SystemProps
     var props: [String: AnyCodableValue]?
