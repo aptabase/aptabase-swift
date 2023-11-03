@@ -82,7 +82,7 @@ final class EventDispatcherTests: XCTestCase {
     
     private func newEvent(_ eventName: String) -> Event {
         return Event(timestamp: Date(),
-                     sessionId: UUID(),
+                     sessionId: String(UUID()),
                      eventName: eventName,
                      systemProps: Event.SystemProps(isDebug: env.isDebug,
                                                     locale: env.locale,
