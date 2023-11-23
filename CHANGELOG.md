@@ -1,3 +1,7 @@
+## 0.3.6
+
+* Fix bad formatting in podspec
+
 ## 0.3.5
 
 * Only include .h, .m, .swift files in the podspec
