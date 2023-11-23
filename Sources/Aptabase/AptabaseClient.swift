@@ -1,7 +1,7 @@
 import Foundation
 
 class AptabaseClient {
-    private static let sdkVersion = "aptabase-swift@0.3.4"
+    private static let sdkVersion = "aptabase-swift@0.3.5"
     // Session expires after 1 hour of inactivity
     private static let sessionTimeout: TimeInterval = 1 * 60 * 60
 

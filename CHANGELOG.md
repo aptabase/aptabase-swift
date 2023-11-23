@@ -1,3 +1,7 @@
+## 0.3.5
+
+* Only include .h, .m, .swift files in the podspec
+
 ## 0.3.4
 
 * Use new session id format

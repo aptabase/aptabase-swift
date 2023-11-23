@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name                      = 'Aptabase'
-    s.version                   = '0.3.4'
+    s.version                   = '0.3.5'
     s.summary                   = 'Swift SDK for Aptabase: Open Source, Privacy-First and Simple Analytics for Mobile, Desktop and Web Apps'
     s.homepage                  = 'https://aptabase.com'
     s.license                   = { :type => 'MIT', :file => 'LICENSE' }
@@ -11,5 +11,5 @@ Pod::Spec.new do |s|
     s.watchos.deployment_target = "6.0"
     s.tvos.deployment_target    = "13.0"
     s.swift_version             = '5.7'
-    s.source_files              = 'Sources/Aptabase/**/*'
+    s.source_files              = 'Sources/Aptabase/**/*.{h,m,swift}"
   end
