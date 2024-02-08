@@ -1,3 +1,7 @@
+## 0.3.7
+
+* Add support for visionOS
+
 ## 0.3.6
 
 * Fix bad formatting in podspec
