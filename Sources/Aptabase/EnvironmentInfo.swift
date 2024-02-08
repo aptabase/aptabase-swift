@@ -1,4 +1,6 @@
-#if os(iOS)
+import Foundation
+
+#if os(iOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
@@ -50,6 +52,8 @@ struct EnvironmentInfo {
         "watchOS"
         #elseif os(tvOS)
         "tvOS"
+        #elseif os(visionOS)
+        "visionOS"
         #else
         ""
         #endif
@@ -59,12 +63,10 @@ struct EnvironmentInfo {
         #if os(macOS) || targetEnvironment(macCatalyst)
         let os = ProcessInfo.processInfo.operatingSystemVersion
         return "\(os.majorVersion).\(os.minorVersion).\(os.patchVersion)"
-        #elseif os(iOS)
+        #elseif os(iOS) || os(tvOS) || os(visionOS)
         UIDevice.current.systemVersion
         #elseif os(watchOS)
         WKInterfaceDevice.current().systemVersion
-        #elseif os(tvOS)
-        UIDevice.current.systemVersion
         #else
         ""
         #endif

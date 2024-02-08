@@ -1,6 +1,6 @@
 import Foundation
 
-#if os(iOS)
+#if os(iOS) || os(visionOS)
 import UIKit
 #elseif os(macOS)
 import AppKit
@@ -36,7 +36,7 @@ public class Aptabase: NSObject {
         client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
 
         let notifications = NotificationCenter.default
-        #if os(tvOS) || os(iOS)
+        #if os(tvOS) || os(iOS) || os(visionOS)
         notifications.addObserver(self, selector: #selector(startPolling), name: UIApplication.willEnterForegroundNotification, object: nil)
         notifications.addObserver(self, selector: #selector(stopPolling), name: UIApplication.didEnterBackgroundNotification, object: nil)
         #elseif os(macOS)
