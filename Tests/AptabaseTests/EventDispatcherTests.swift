@@ -21,7 +21,8 @@ final class EventDispatcherTests: XCTestCase {
         isDebug: true,
         osName: "iOS",
         osVersion: "17.0",
-        appVersion: "1.0.0"
+        appVersion: "1.0.0",
+        deviceModel: "iPhone16,2"
     )
 
     override func setUp() {
@@ -90,7 +91,8 @@ final class EventDispatcherTests: XCTestCase {
                                                     osVersion: env.osVersion,
                                                     appVersion: env.appVersion,
                                                     appBuildNumber: env.appBuildNumber,
-                                                    sdkVersion: "aptabase-swift@0.0.0")
+                                                    sdkVersion: "aptabase-swift@0.0.0",
+                                                    deviceModel: env.deviceModel)
         )
     }
 }

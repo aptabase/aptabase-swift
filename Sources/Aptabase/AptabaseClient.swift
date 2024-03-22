@@ -36,7 +36,8 @@ class AptabaseClient {
                             osVersion: env.osVersion,
                             appVersion: env.appVersion,
                             appBuildNumber: env.appBuildNumber,
-                            sdkVersion: AptabaseClient.sdkVersion
+                            sdkVersion: AptabaseClient.sdkVersion,
+                            deviceModel: env.deviceModel
                         ),
                         props: props)
         dispatcher.enqueue(evt)
