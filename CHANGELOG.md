@@ -1,3 +1,7 @@
+## 0.3.8
+
+* Add `deviceModel`
+
 ## 0.3.7
 
 * Add support for visionOS
