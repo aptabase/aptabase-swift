@@ -15,6 +15,7 @@ struct Event: Encodable {
         var appVersion: String
         var appBuildNumber: String
         var sdkVersion: String
+        var deviceModel: String
     }
 }
 

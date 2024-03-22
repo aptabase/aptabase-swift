@@ -17,6 +17,7 @@ struct EnvironmentInfo {
     var locale = ""
     var appVersion = ""
     var appBuildNumber = ""
+    var deviceModel = ""
 
     static func current() -> EnvironmentInfo {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String
@@ -28,7 +29,8 @@ struct EnvironmentInfo {
             osVersion: osVersion,
             locale: Locale.current.languageCode ?? "",
             appVersion: appVersion ?? "",
-            appBuildNumber: appBuildNumber ?? ""
+            appBuildNumber: appBuildNumber ?? "",
+            deviceModel: deviceModel
         )
     }
 
@@ -70,5 +72,22 @@ struct EnvironmentInfo {
         #else
         ""
         #endif
+    }
+
+    private static var deviceModel: String {
+        if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            return simulatorModelIdentifier
+        } else {
+            var systemInfo = utsname()
+            if uname(&systemInfo) == 0 {
+                let identifier = withUnsafePointer(to: &systemInfo.machine) { ptr in
+                    ptr.withMemoryRebound(to: CChar.self, capacity: 1) { machinePtr in
+                        String(cString: machinePtr)
+                    }
+                }
+                return identifier
+            }
+            return ""
+        }
     }
 }
