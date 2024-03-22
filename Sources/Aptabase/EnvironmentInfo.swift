@@ -79,14 +79,15 @@ struct EnvironmentInfo {
             return simulatorModelIdentifier
         } else {
             var systemInfo = utsname()
-            uname(&systemInfo)
-
-            let identifier = withUnsafePointer(to: &systemInfo.machine) { ptr in
-                ptr.withMemoryRebound(to: CChar.self, capacity: 1) { machinePtr in
-                    String(cString: machinePtr)
+            if uname(&systemInfo) == 0 {
+                let identifier = withUnsafePointer(to: &systemInfo.machine) { ptr in
+                    ptr.withMemoryRebound(to: CChar.self, capacity: 1) { machinePtr in
+                        String(cString: machinePtr)
+                    }
                 }
+                return identifier
             }
-            return identifier
+            return ""
         }
     }
 }
