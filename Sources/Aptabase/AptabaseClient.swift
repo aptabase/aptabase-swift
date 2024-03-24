@@ -11,6 +11,7 @@ class AptabaseClient {
     private let dispatcher: EventDispatcher
     private let env: EnvironmentInfo
     private let flushInterval: Double
+    private var pauseFlushTimer: Bool = false
 
     init(appKey: String, baseUrl: String, env: EnvironmentInfo, options: InitOptions?) {
         flushInterval = options?.flushInterval ?? (env.isDebug ? 2.0 : 60.0)
@@ -46,14 +47,17 @@ class AptabaseClient {
     public func startPolling() {
         stopPolling()
 
-        flushTimer = Timer.scheduledTimer(timeInterval: flushInterval, target: self, selector: #selector(flushSync), userInfo: nil, repeats: true)
+        flushTimer = Timer.scheduledTimer(timeInterval: flushInterval, target: self, selector: #selector(timerFlushSync), userInfo: nil, repeats: true)
     }
 
     public func stopPolling() {
         flushTimer?.invalidate()
         flushTimer = nil
-
-        flushSync()
+        
+        Task {
+            await flush()
+        }
+        
     }
 
     public func flush() async {
@@ -66,12 +70,13 @@ class AptabaseClient {
         return String(epochInSeconds * 100000000 + random)
     }
 
-    @objc private func flushSync() {
-        let semaphore = DispatchSemaphore(value: 0)
-        Task {
-            await self.flush()
-            semaphore.signal()
+    @objc private func timerFlushSync() {
+        if !pauseFlushTimer {
+            Task {
+                self.pauseFlushTimer = true
+                await self.flush()
+                self.pauseFlushTimer = false
+            }
         }
-        semaphore.wait()
     }
 }
