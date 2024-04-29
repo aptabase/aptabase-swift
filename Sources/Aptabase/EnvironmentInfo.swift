@@ -75,6 +75,22 @@ struct EnvironmentInfo {
     }
 
     private static var deviceModel: String {
+        #if os(macOS) || targetEnvironment(macCatalyst)
+        // `uname` returns x86_64 (or Apple Silicon equivalent) for Macs.
+        // Use `sysctlbyname` here instead to get actual model name. If it fails, fall back to `uname`.
+        var size = 0
+        sysctlbyname("hw.model", nil, &size, nil, 0)
+        if size > 0 {
+            var model = [CChar](repeating: 0, count: size)
+            sysctlbyname("hw.model", &model, &size, nil, 0)
+            let deviceModel = String(cString: model)
+            // If we got a deviceModel, use it. Else continue to "default" logic.
+            if !deviceModel.isEmpty {
+                return deviceModel
+            }
+        }
+        #endif
+
         if let simulatorModelIdentifier = ProcessInfo().environment["SIMULATOR_MODEL_IDENTIFIER"] {
             return simulatorModelIdentifier
         } else {
