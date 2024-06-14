@@ -1,3 +1,8 @@
+## 0.3.9
+
+* Fix device model for Mac https://github.com/aptabase/aptabase-swift/pull/22
+* Fix application hang/crash https://github.com/aptabase/aptabase-swift/pull/19
+
 ## 0.3.8
 
 * Add `deviceModel`
