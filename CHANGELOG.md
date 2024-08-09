@@ -1,3 +1,7 @@
+## 0.3.10
+
+* Fix isDebug environment for multiple non RELEASE build configs https://github.com/aptabase/aptabase-swift/pull/24
+
 ## 0.3.9
 
 * Fix device model for Mac https://github.com/aptabase/aptabase-swift/pull/22
