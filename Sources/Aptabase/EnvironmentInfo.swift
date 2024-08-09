@@ -35,10 +35,10 @@ struct EnvironmentInfo {
     }
 
     private static var isDebug: Bool {
-        #if DEBUG
-        true
-        #else
+        #if RELEASE
         false
+        #else
+        true
         #endif
     }
 
