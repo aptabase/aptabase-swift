@@ -1,3 +1,18 @@
+## 0.3.11
+
+* Reverts previous change which caused RELEASE data not to show up
+* Adds an option to explicitly set the tracking mode to Debug or Release. Not setting this option will fallback to the previous reading of environment value.
+
+- Setting to release
+`Aptabase.shared.initialize(appKey: "", options: InitOptions(trackingMode: .asRelease))`
+
+- Setting to debug
+`Aptabase.shared.initialize(appKey: "", options: InitOptions(trackingMode: .asDebug))`
+
+- Setting omitting the value, same as setting to `.readFromEnvironment`:
+`Aptabase.shared.initialize(appKey: "")`
+`Aptabase.shared.initialize(appKey: "", options: InitOptions(trackingMode: .readFromEnvironment))`
+
 ## 0.3.10
 
 * Fix isDebug environment for multiple non RELEASE build configs https://github.com/aptabase/aptabase-swift/pull/24
