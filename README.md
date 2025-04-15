@@ -1,5 +1,3 @@
-⚠️ This is a fork of https://github.com/aptabase/aptabase.
-
 ![Aptabase](https://aptabase.com/og.png)
 
 # Swift SDK for Aptabase
