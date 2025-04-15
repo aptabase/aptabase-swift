@@ -92,11 +92,16 @@ public class Aptabase: NSObject {
         enqueueEvent(eventName, with: codable)
     }
 
-    /// Forces all queued events to be sent to the server
+    /// Forces all queued events to be sent to the server asynchronously. Returns before the events have been sent.
     @objc public func flush() {
         Task {
             await self.client?.flush()
         }
+    }
+
+    /// Forces all queued events to be sent to the server. Returns after the events have been sent.
+    public func flush() async {
+        await self.client?.flush()
     }
 
     private func enqueueEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
