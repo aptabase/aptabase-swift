@@ -37,6 +37,10 @@ public class Aptabase: NSObject {
             env.isDebug = trackingMode.isDebug
         }
 
+        if let appVersion = options?.appVersion {
+            env.appVersion = appVersion
+        }
+
         client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
 
         let notifications = NotificationCenter.default

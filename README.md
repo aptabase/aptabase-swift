@@ -69,6 +69,22 @@ struct ExampleApp: App {
 }
 ```
 
+You can also pass options to customize behavior:
+
+```swift
+Aptabase.shared.initialize(appKey: "<YOUR_APP_KEY>", with: InitOptions(
+    host: "https://your-self-hosted-instance.com",  // For self-hosted Aptabase
+    flushInterval: 30,                               // Custom flush interval in seconds
+    trackingMode: .asRelease,                         // Force release mode
+    appVersion: "2.0.0"                               // Override the app version
+))
+```
+
+- `host` — Custom server URL for self-hosted Aptabase instances (required for `A-SH-*` app keys)
+- `flushInterval` — Interval in seconds for batching and sending events (default: automatic)
+- `trackingMode` — `.readFromEnvironment` (default), `.asDebug`, or `.asRelease`
+- `appVersion` — Override the app version reported with events (default: read from app bundle)
+
 Afterward, you can start tracking events with `trackEvent`:
 
 ```swift
