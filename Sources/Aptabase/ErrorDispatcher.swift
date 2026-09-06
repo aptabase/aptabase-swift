@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Errors have their own dispatcher because the error endpoint takes a single object per request and has different retry semantics than the events endpoint: 408/429 must be retried, while 403 (monthly error quota exhausted) must never be retried.
 public actor ErrorDispatcher: Dispatcher<ErrorReport> {
     internal var queue = ConcurrentQueue<ErrorReport>()
     internal let maximumBatchSize = 1
@@ -37,7 +38,7 @@ public actor ErrorDispatcher: Dispatcher<ErrorReport> {
     
     func sendItems(_ items: [ErrorReport]) async throws {
         // only send the first error report
-        guard let errorReport = items.first else {
+         guard let errorReport = items.first else {
              return
          }
 

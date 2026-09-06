@@ -71,6 +71,10 @@ public class Aptabase: NSObject {
         enqueueEvent(eventName, with: codable)
     }
     
+    /// Track errors you've caught and handled.
+    /// - Parameters:
+    ///   - error: The error to report.
+    ///   - fatal: Wether the app can recover from the error.
     public func trackError(_ error: Error, fatal: Bool = false) {
         enqueueErrorReport(error, fatal: fatal)
     }
@@ -101,6 +105,10 @@ public class Aptabase: NSObject {
         enqueueEvent(eventName, with: codable)
     }
     
+    /// Track errors you've caught and handled.
+    /// - Parameters:
+    ///   - error: The error to report.
+    ///   - fatal: Wether the app can recover from the error.
     @objc public func trackError(_ error: NSError, fatal: Bool = false) {
            enqueueErrorReport(error)
     }
