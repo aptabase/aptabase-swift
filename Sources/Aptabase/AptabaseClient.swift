@@ -8,7 +8,8 @@ class AptabaseClient {
     private var sessionId = newSessionId()
     private var lastTouched = Date()
     private var flushTimer: Timer?
-    private let dispatcher: EventDispatcher
+    private let eventDispatcher: EventDispatcher
+    private let errorDispatcher: ErrorDispatcher
     private let env: EnvironmentInfo
     private let flushInterval: Double
     private var pauseFlushTimer: Bool = false
@@ -17,16 +18,13 @@ class AptabaseClient {
         flushInterval = options?.flushInterval ?? (env.isDebug ? 2.0 : 60.0)
         self.env = env
 
-        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
+        eventDispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
+        errorDispatcher = ErrorDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
     }
 
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
-        let now = Date()
-        if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
-            sessionId = AptabaseClient.newSessionId()
-        }
-        lastTouched = now
-
+        evaluateSessionId()
+        
         let evt = Event(timestamp: Date(),
                         sessionId: sessionId,
                         eventName: eventName,
@@ -41,7 +39,15 @@ class AptabaseClient {
                             deviceModel: env.deviceModel
                         ),
                         props: props)
-        dispatcher.enqueue(evt)
+        eventDispatcher.enqueue(evt)
+    }
+    
+    public func trackError(_ error: any Error, fatal: Bool = false) {
+        evaluateSessionId()
+        
+        let errorReport = ErrorReport.build(error, fatal: fatal, sessionId: sessionId, sdkVersion: AptabaseClient.sdkVersion, env: env)
+        
+        errorDispatcher.enqueue(errorReport)
     }
 
     public func startPolling() {
@@ -61,7 +67,16 @@ class AptabaseClient {
     }
 
     public func flush() async {
-        await dispatcher.flush()
+        await eventDispatcher.flush()
+        await errorDispatcher.flush()
+    }
+    
+    private func evaluateSessionId() {
+        let now = Date()
+        if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
+            sessionId = AptabaseClient.newSessionId()
+        }
+        lastTouched = now
     }
     
     private static func newSessionId() -> String {

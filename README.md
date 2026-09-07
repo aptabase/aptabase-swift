@@ -86,6 +86,34 @@ A few important notes:
 3. The `trackEvent` function is a non-blocking operation as it runs in the background.
 4. Only strings and numbers values are allowed on custom properties
 
+## Error Reporting
+
+> Error reporting is in beta. Reports appear on the `Errors` page of your Aptabase dashboard.
+
+Use `.trackError()` to report errors you've caught and handled:
+
+```swift
+import Aptabase
+
+do {
+    try someFailingFunction()
+} catch {
+    Aptabase.shared.trackError(error)
+}
+```
+
+For errors your app can't recover from, mark the report as fatal:
+
+```swift
+.trackError(error, fatal: true); // severity: fatal
+```
+
+A few important notes about error reporting:
+
+1. Each report includes the error type, message, stack trace, severity (`error` or `fatal`) and how it was captured (`handled`, `unhandled` or `crash`).
+2. Errors count against a separate monthly error quota. When the quota is exhausted, the server rejects new reports until it resets.
+
+
 ## Preparing for Submission to Apple App Store
 
 When submitting your app to the Apple App Store, you'll need to fill out the `App Privacy` form. You can find all the answers on our [How to fill out the Apple App Privacy when using Aptabase](https://aptabase.com/docs/apple-app-privacy) guide.
