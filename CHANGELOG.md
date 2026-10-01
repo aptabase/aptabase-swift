@@ -1,4 +1,4 @@
-## Unreleased
+## 0.3.12
 
 * Adds an `appVersion` option to `InitOptions` to override the app version read from the bundle https://github.com/aptabase/aptabase-swift/pull/36
 
