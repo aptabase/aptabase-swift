@@ -1,3 +1,9 @@
+## Unreleased
+
+* Adds an `appVersion` option to `InitOptions` to override the app version read from the bundle https://github.com/aptabase/aptabase-swift/pull/36
+
+`Aptabase.shared.initialize(appKey: "", with: InitOptions(appVersion: "2.0.0-beta3"))`
+
 ## 0.3.11
 
 * Reverts previous change which caused RELEASE data not to show up
