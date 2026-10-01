@@ -1,38 +1,13 @@
 import Foundation
 
-struct Event: Encodable {
-    var timestamp: Date
-    var sessionId: String
-    var eventName: String
-    var systemProps: SystemProps
-    var props: [String: AnyCodableValue]?
-
-    struct SystemProps: Encodable {
-        var isDebug: Bool
-        var locale: String
-        var osName: String
-        var osVersion: String
-        var appVersion: String
-        var appBuildNumber: String
-        var sdkVersion: String
-        var deviceModel: String
-    }
-}
-
-protocol URLSessionProtocol {
-    func data(for: URLRequest) async throws -> (Data, URLResponse)
-}
-
-extension URLSession: URLSessionProtocol {}
-
-public class EventDispatcher {
-    private var events = ConcurrentQueue<Event>()
-    private let maximumBatchSize = 25
-    private let headers: [String: String]
-    private let apiUrl: URL
-    private let session: URLSessionProtocol
-
-    init(appKey: String, baseUrl: String, env: EnvironmentInfo, session: URLSessionProtocol = URLSession.shared) {
+public class EventDispatcher: Dispatcher<Event> {
+    internal var queue = ConcurrentQueue<Event>()
+    internal let maximumBatchSize = 25
+    internal let headers: [String: String]
+    internal let apiUrl: URL
+    internal let session: URLSessionProtocol
+    
+    required init(appKey: String, baseUrl: String, env: EnvironmentInfo, session: URLSessionProtocol = URLSession.shared) {
         self.session = session
         apiUrl = URL(string: "\(baseUrl)/api/v0/events")!
         headers = [
@@ -41,42 +16,14 @@ public class EventDispatcher {
             "User-Agent": "\(env.osName)/\(env.osVersion) \(env.locale)"
         ]
     }
-
-    func enqueue(_ newEvent: Event) {
-        events.enqueue(newEvent)
-    }
-
-    func enqueue(_ newEvents: [Event]) {
-        events.enqueue(contentsOf: newEvents)
-    }
-
-    func flush() async {
-        if events.isEmpty {
-            return
-        }
-
-        var failedEvents: [Event] = []
-        while !events.isEmpty {
-            let eventsToSend = events.dequeue(count: maximumBatchSize)
-            do {
-                try await sendEvents(eventsToSend)
-            } catch {
-                failedEvents.append(contentsOf: eventsToSend)
-            }
-        }
-
-        if !failedEvents.isEmpty {
-            enqueue(failedEvents)
-        }
-    }
-
-    private func sendEvents(_ events: [Event]) async throws {
-        if events.isEmpty {
+    
+    internal func sendItems(_ items: [Event]) async throws {
+        if items.isEmpty {
             return
         }
 
         do {
-            let body = try encoder.encode(events)
+            let body = try encoder.encode(items)
 
             var request = URLRequest(url: apiUrl)
             request.httpMethod = "POST"
@@ -93,24 +40,14 @@ public class EventDispatcher {
             let reason = "\(statusCode) \(responseText)"
 
             if statusCode < 500 {
-                debugPrint("Aptabase: Failed to send \(events.count) events because of \(reason). Will not retry.")
+                debugPrint("Aptabase: Failed to send \(queue.count) events because of \(reason). Will not retry.")
                 return
             }
 
             throw NSError(domain: "AptabaseError", code: statusCode, userInfo: ["reason": reason])
         } catch {
-            debugPrint("Aptabase: Failed to send \(events.count) events. Reason: \(error)")
+            debugPrint("Aptabase: Failed to send \(queue.count) events. Reason: \(error)")
             throw error
         }
     }
-
-    private var encoder: JSONEncoder = {
-        let encoder = JSONEncoder()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
-        formatter.locale = Locale(identifier: "en_US")
-        formatter.timeZone = TimeZone(identifier: "UTC")
-        encoder.dateEncodingStrategy = .formatted(formatter)
-        return encoder
-    }()
 }

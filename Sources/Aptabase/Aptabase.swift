@@ -69,6 +69,14 @@ public class Aptabase: NSObject {
 
         enqueueEvent(eventName, with: codable)
     }
+    
+    /// Track errors you've caught and handled.
+    /// - Parameters:
+    ///   - error: The error to report.
+    ///   - fatal: Wether the app can recover from the error.
+    public func trackError(_ error: Error, fatal: Bool = false) {
+        enqueueErrorReport(error, fatal: fatal)
+    }
 
     /// Initializes the client with given App Key.
     /// - Parameter appKey: The App Key to use.
@@ -95,6 +103,14 @@ public class Aptabase: NSObject {
 
         enqueueEvent(eventName, with: codable)
     }
+    
+    /// Track errors you've caught and handled.
+    /// - Parameters:
+    ///   - error: The error to report.
+    ///   - fatal: Wether the app can recover from the error.
+    @objc public func trackError(_ error: NSError, fatal: Bool = false) {
+           enqueueErrorReport(error)
+    }
 
     /// Forces all queued events to be sent to the server
     @objc public func flush() {
@@ -109,6 +125,14 @@ public class Aptabase: NSObject {
         }
 
         client.trackEvent(eventName, with: props)
+    }
+    
+    private func enqueueErrorReport(_ error: Error, fatal: Bool = false) {
+        guard let client else {
+            return
+        }
+        
+        client.trackError(error, fatal: fatal)
     }
 
     @objc private func startPolling() {
