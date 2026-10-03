@@ -18,7 +18,7 @@ class ConcurrentQueue<T> {
 
     func dequeue() -> T? {
         var result: T?
-        queue.sync {
+        queue.sync(flags: .barrier) {
             if !self.elements.isEmpty {
                 result = self.elements.removeFirst()
             }
@@ -28,7 +28,7 @@ class ConcurrentQueue<T> {
 
     func dequeue(count: Int) -> [T] {
         var dequeuedElements = [T]()
-        queue.sync {
+        queue.sync(flags: .barrier) {
             for _ in 0 ..< min(count, self.elements.count) {
                 dequeuedElements.append(self.elements.removeFirst())
             }
