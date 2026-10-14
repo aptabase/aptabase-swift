@@ -41,6 +41,7 @@ public class Aptabase: NSObject {
             env.appVersion = appVersion
         }
 
+        client?.stopPolling()
         client = AptabaseClient(appKey: appKey, baseUrl: baseUrl, env: env, options: options)
 
         let notifications = NotificationCenter.default
