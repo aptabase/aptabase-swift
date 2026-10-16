@@ -8,7 +8,8 @@ class AptabaseClient {
     private var sessionId = newSessionId()
     private var lastTouched = Date()
     private var flushTimer: Timer?
-    private let dispatcher: EventDispatcher
+    private let eventDispatcher: EventDispatcher
+    private let errorDispatcher: ErrorDispatcher
     private let env: EnvironmentInfo
     private let flushInterval: Double
     private var pauseFlushTimer: Bool = false
@@ -17,13 +18,15 @@ class AptabaseClient {
         flushInterval = options?.flushInterval ?? (env.isDebug ? 2.0 : 60.0)
         self.env = env
 
-        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env, session: session)
+        eventDispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env, session: session)
+        errorDispatcher = ErrorDispatcher(appKey: appKey, baseUrl: baseUrl, env: env, session: session)
+        
         // Extensions and clients initialized after activation may never receive
         // a foreground notification. Begin normal delivery immediately.
         startPolling()
     }
 
-    /// Begins tracking an event in the asynchronously.
+    /// Begins tracking an event asynchronously.
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
         Task {
             await trackEvent(eventName, with: props)
@@ -37,6 +40,8 @@ class AptabaseClient {
         }
         lastTouched = now
 
+        evaluateSessionId()
+        
         let evt = Event(timestamp: Date(),
                         sessionId: sessionId,
                         eventName: eventName,
@@ -52,7 +57,22 @@ class AptabaseClient {
                         ),
                         props: props)
 
-        await dispatcher.enqueue(evt)
+        await eventDispatcher.enqueue(evt)
+    }
+    
+    /// Begins tracking an error asynchronously.
+    public func trackError(_ error: any Error, fatal: Bool = false) {
+        Task {
+            await trackError(error, fatal: fatal)
+        }
+    }
+    
+    public func trackError(_ error: any Error, fatal: Bool = false) async {
+        evaluateSessionId()
+        
+        let errorReport = ErrorReport.build(error, fatal: fatal, sessionId: sessionId, sdkVersion: AptabaseClient.sdkVersion, env: env)
+        
+        await errorDispatcher.enqueue(errorReport)
     }
 
     public func startPolling() {
@@ -72,7 +92,16 @@ class AptabaseClient {
     }
 
     public func flush() async {
-        await dispatcher.flush()
+        await eventDispatcher.flush()
+        await errorDispatcher.flush()
+    }
+    
+    private func evaluateSessionId() {
+        let now = Date()
+        if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
+            sessionId = AptabaseClient.newSessionId()
+        }
+        lastTouched = now
     }
     
     private static func newSessionId() -> String {
