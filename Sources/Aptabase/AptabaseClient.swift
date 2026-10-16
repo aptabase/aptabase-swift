@@ -13,11 +13,14 @@ class AptabaseClient {
     private let flushInterval: Double
     private var pauseFlushTimer: Bool = false
 
-    init(appKey: String, baseUrl: String, env: EnvironmentInfo, options: InitOptions?) {
+    init(appKey: String, baseUrl: String, env: EnvironmentInfo, options: InitOptions?, session: URLSessionProtocol = URLSession.shared) {
         flushInterval = options?.flushInterval ?? (env.isDebug ? 2.0 : 60.0)
         self.env = env
 
-        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env)
+        dispatcher = EventDispatcher(appKey: appKey, baseUrl: baseUrl, env: env, session: session)
+        // Extensions and clients initialized after activation may never receive
+        // a foreground notification. Begin normal delivery immediately.
+        startPolling()
     }
 
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {

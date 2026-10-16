@@ -87,6 +87,12 @@ Aptabase.shared.initialize(appKey: "<YOUR_APP_KEY>", with: InitOptions(
 
 Afterward, you can start tracking events with `trackEvent`:
 
+Delivery starts when the SDK is initialized, including in macOS app extensions
+that do not receive application activation notifications. Initialize on the main
+thread so the delivery timer uses the main run loop. The configured flush interval
+also controls retries after transient failures. Events remain in memory, so an
+extension terminated before delivery can lose pending events.
+
 ```swift
 import Aptabase
 
