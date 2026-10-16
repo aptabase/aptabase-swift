@@ -110,7 +110,7 @@ public class Aptabase: NSObject {
     ///   - error: The error to report.
     ///   - fatal: Wether the app can recover from the error.
     @objc public func trackError(_ error: NSError, fatal: Bool = false) {
-           enqueueErrorReport(error)
+           enqueueErrorReport(error, fatal: fatal)
     }
 
     /// Forces all queued events to be sent to the server asynchronously. Returns before the events have been sent.
