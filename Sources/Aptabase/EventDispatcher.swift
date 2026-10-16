@@ -25,7 +25,7 @@ protocol URLSessionProtocol {
 
 extension URLSession: URLSessionProtocol {}
 
-public class EventDispatcher {
+public actor EventDispatcher {
     private var events = ConcurrentQueue<Event>()
     private let maximumBatchSize = 25
     private let headers: [String: String]

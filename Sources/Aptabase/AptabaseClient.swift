@@ -23,7 +23,14 @@ class AptabaseClient {
         startPolling()
     }
 
+    /// Begins tracking an event in the asynchronously.
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) {
+        Task {
+            await trackEvent(eventName, with: props)
+        }
+    }
+
+    public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) async {
         let now = Date()
         if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
             sessionId = AptabaseClient.newSessionId()
@@ -44,7 +51,8 @@ class AptabaseClient {
                             deviceModel: env.deviceModel
                         ),
                         props: props)
-        dispatcher.enqueue(evt)
+
+        await dispatcher.enqueue(evt)
     }
 
     public func startPolling() {
