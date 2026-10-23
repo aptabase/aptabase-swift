@@ -112,7 +112,7 @@ A few important notes:
 
 > Error reporting is in beta. Reports appear on the `Errors` page of your Aptabase dashboard.
 
-Use `.trackError()` to report errors you've caught and handled:
+Use `trackError` to report errors you've caught and handled:
 
 ```swift
 import Aptabase
@@ -120,21 +120,24 @@ import Aptabase
 do {
     try someFailingFunction()
 } catch {
-    Aptabase.shared.trackError(error)
+    Aptabase.shared.trackError(error) // severity: error
 }
 ```
 
 For errors your app can't recover from, mark the report as fatal:
 
 ```swift
-.trackError(error, fatal: true); // severity: fatal
+Aptabase.shared.trackError(error, fatal: true) // severity: fatal
 ```
 
 A few important notes about error reporting:
 
-1. Each report includes the error type, message, stack trace, severity (`error` or `fatal`) and how it was captured (`handled`, `unhandled` or `crash`).
-2. Errors count against a separate monthly error quota. When the quota is exhausted, the server rejects new reports until it resets.
-
+1. Each report includes the error type, message, stack trace, severity (`error` or `fatal`) and how it was captured (`handled`, or `crash` when `fatal` is set). Swift errors are reported under their type name with their description; errors from Apple frameworks (`NSError`, `URLError`, `CocoaError`) are grouped by domain and code, for example `NSURLErrorDomain -1009`.
+2. The stack trace is captured where `trackError` is called, since Swift errors carry no stack of their own. The SDK's own frames are removed so the first frame is your call site.
+3. Reports are sent immediately and kept in memory for retry when the network is unavailable (up to 25 pending reports). They are not persisted to disk, so a report may be lost if the app terminates right after `trackError` returns.
+4. Fields longer than the server accepts (for example a 10,000 character stack trace) are truncated rather than rejected.
+5. Errors count against a separate monthly error quota. When the quota is exhausted, the server rejects new reports until it resets.
+6. Uncaught exceptions and crashes are not reported automatically yet. Call `trackError` from your own error handling.
 
 ## Preparing for Submission to Apple App Store
 
