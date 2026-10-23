@@ -6,6 +6,7 @@
 * Report fields are truncated to the server's limits instead of being rejected
 * Errors from Apple frameworks are reported by domain and code, Swift errors by type name with their description
 * CI runs on `macos-15` with Xcode 16; the retired `macos-13` image left every run queued until timeout
+* Fixes the build on Xcode 16 (Swift 6.1): `Dispatcher<Item>` cannot be used in a conformance clause there, so the dispatchers declare their `Item` typealias instead
 
 ## 0.3.12
 

@@ -1,6 +1,8 @@
 import Foundation
 
-public actor EventDispatcher: Dispatcher<Event> {
+public actor EventDispatcher: Dispatcher {
+    typealias Item = Event
+
     internal var queue = ConcurrentQueue<Event>()
     internal let maximumBatchSize = 25
     internal let headers: [String: String]
