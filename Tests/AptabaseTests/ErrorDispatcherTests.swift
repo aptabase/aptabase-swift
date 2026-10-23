@@ -38,14 +38,14 @@ final class ErrorDispatcherTests: XCTestCase {
     }
 
     func testFlushSingleItem() async {
-        dispatcher.enqueue(newReport())
+        await dispatcher.enqueue(newReport())
 
         await dispatcher.flush()
         XCTAssertEqual(session.requestCount, 1)
     }
 
     func testFlushShouldRetryAfterFailure() async {
-        dispatcher.enqueue(newReport())
+        await dispatcher.enqueue(newReport())
 
         session.statusCode = 500
         await dispatcher.flush()
@@ -57,7 +57,7 @@ final class ErrorDispatcherTests: XCTestCase {
     }
 
     func testFlushShouldNotRetryForbidden() async {
-        dispatcher.enqueue(newReport())
+        await dispatcher.enqueue(newReport())
 
         session.statusCode = 403
         await dispatcher.flush()
@@ -71,7 +71,7 @@ final class ErrorDispatcherTests: XCTestCase {
     func testFlushShouldDropWhenQueueIsFull() async {
         session.statusCode = 403
         for _ in 0...25 {
-            dispatcher.enqueue(newReport())
+            await dispatcher.enqueue(newReport())
         }
 
         await dispatcher.flush()
@@ -79,7 +79,7 @@ final class ErrorDispatcherTests: XCTestCase {
     }
 
     func testFlushShouldPostErrorEndpoint() async throws {
-        dispatcher.enqueue(newReport(fatal: true))
+        await dispatcher.enqueue(newReport(fatal: true))
 
         await dispatcher.flush()
         XCTAssertEqual(session.lastRequest?.url?.absoluteString, "http://localhost:3000/api/v0/error")

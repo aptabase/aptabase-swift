@@ -29,7 +29,7 @@ final class AptabaseClientTests: XCTestCase {
             env: EnvironmentInfo(isDebug: true, osName: "macOS", osVersion: "14.0", appVersion: "1.0", deviceModel: "Mac"),
             options: InitOptions(flushInterval: 0.05), session: session)
         defer { client.stopPolling() }
-        client.trackEvent("finder_operation")
+        await client.trackEvent("finder_operation")
         await fulfillment(of: [delivered], timeout: 2)
         let names = await session.eventNames()
         XCTAssertEqual(names, ["finder_operation"])
