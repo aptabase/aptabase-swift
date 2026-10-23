@@ -4,9 +4,11 @@ import XCTest
 class MockURLSession: URLSessionProtocol {
     var requestCount: Int = 0
     var statusCode: Int = 200
+    var lastRequest: URLRequest?
     
     func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         requestCount += 1
+        lastRequest = request
         
         let data = "{}".data(using: .utf8)!
         let response = HTTPURLResponse(url: request.url!, statusCode: statusCode, httpVersion: nil, headerFields: nil)!
