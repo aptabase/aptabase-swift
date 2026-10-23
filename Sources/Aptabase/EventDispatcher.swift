@@ -6,6 +6,7 @@ public actor EventDispatcher: Dispatcher<Event> {
     internal let headers: [String: String]
     internal let apiUrl: URL
     internal let session: URLSessionProtocol
+    internal let encoder = makeDispatcherEncoder()
     
     init(appKey: String, baseUrl: String, env: EnvironmentInfo, session: URLSessionProtocol = URLSession.shared) {
         self.session = session
@@ -40,13 +41,13 @@ public actor EventDispatcher: Dispatcher<Event> {
             let reason = "\(statusCode) \(responseText)"
 
             if statusCode < 500 {
-                debugPrint("Aptabase: Failed to send \(queue.count) events because of \(reason). Will not retry.")
+                debugPrint("Aptabase: Failed to send \(items.count) events because of \(reason). Will not retry.")
                 return
             }
 
             throw NSError(domain: "AptabaseError", code: statusCode, userInfo: ["reason": reason])
         } catch {
-            debugPrint("Aptabase: Failed to send \(queue.count) events. Reason: \(error)")
+            debugPrint("Aptabase: Failed to send \(items.count) events. Reason: \(error)")
             throw error
         }
     }

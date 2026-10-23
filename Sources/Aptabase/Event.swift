@@ -1,10 +1,3 @@
-//
-//  File.swift
-//  Aptabase
-//
-//  Created by Joshua Wolfson on 6/9/2026.
-//
-
 import Foundation
 
 struct Event: Encodable {
