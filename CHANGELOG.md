@@ -1,4 +1,4 @@
-## Unreleased
+## 0.4.0
 
 * Adds error reporting: `Aptabase.shared.trackError(error)` and `trackError(error, fatal: true)` post structured error reports (type, message, stack trace, severity, kind) to the `Errors` page https://github.com/aptabase/aptabase-swift/pull/39
 * Error reports are sent immediately and retried from memory on network failures; 403 (monthly error quota exhausted) is never retried

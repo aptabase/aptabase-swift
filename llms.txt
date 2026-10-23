@@ -24,7 +24,7 @@ Add to your `Package.swift`:
 
 ```swift
 dependencies: [
-    .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.3.4"),
+    .package(name: "Aptabase", url: "https://github.com/aptabase/aptabase-swift.git", from: "0.4.0"),
 ],
 targets: [
     .target(name: "MyApp", dependencies: ["Aptabase"])
@@ -36,7 +36,7 @@ Or add via Xcode: File > Add Package Dependencies > enter `https://github.com/ap
 ### CocoaPods
 
 ```ruby
-pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.3.4'
+pod 'Aptabase', :git => 'https://github.com/aptabase/aptabase-swift.git', :tag => '0.4.0'
 ```
 
 ## Initialization
