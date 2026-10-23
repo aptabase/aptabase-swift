@@ -93,6 +93,26 @@ Aptabase.shared.trackEvent("purchase", with: ["amount": 9.99, "currency": "USD"]
 Aptabase.shared.trackEvent("level_complete", with: ["level": 5, "score": 1200])
 ```
 
+## Track Errors
+
+Report handled errors with `trackError`; set `fatal: true` for errors the app cannot recover from. Reports appear on the Errors page of the dashboard.
+
+```swift
+do {
+    try someFailingFunction()
+} catch {
+    Aptabase.shared.trackError(error)              // severity: error, kind: handled
+}
+
+Aptabase.shared.trackError(error, fatal: true)     // severity: fatal, kind: crash
+```
+
+- Each report carries the error type, message, stack trace (captured at the call site), severity, kind, session, OS and app version
+- Swift errors use their type name and description; errors from Apple frameworks (`NSError`, `URLError`, `CocoaError`) are grouped by domain and code (e.g. `NSURLErrorDomain -1009`)
+- Reports are sent immediately and retried from memory on network failures (up to 25 pending); nothing is persisted to disk
+- Errors count against a separate monthly error quota; a 403 from the server means the quota is exhausted
+- Uncaught exceptions and crashes are not reported automatically
+
 ## Configuration
 
 Pass `InitOptions` to customize behavior:

@@ -1,3 +1,13 @@
+## Unreleased
+
+* Adds error reporting: `Aptabase.shared.trackError(error)` and `trackError(error, fatal: true)` post structured error reports (type, message, stack trace, severity, kind) to the `Errors` page https://github.com/aptabase/aptabase-swift/pull/39
+* Error reports are sent immediately and retried from memory on network failures; 403 (monthly error quota exhausted) is never retried
+* Stack traces are captured at the `trackError` call site with the SDK's own frames removed
+* Report fields are truncated to the server's limits instead of being rejected
+* Errors from Apple frameworks are reported by domain and code, Swift errors by type name with their description
+* CI runs on `macos-15` with Xcode 16; the retired `macos-13` image left every run queued until timeout
+* Fixes the build on Xcode 16 (Swift 6.1): `Dispatcher<Item>` cannot be used in a conformance clause there, so the dispatchers declare their `Item` typealias instead
+
 ## 0.3.12
 
 * Adds an `appVersion` option to `InitOptions` to override the app version read from the bundle https://github.com/aptabase/aptabase-swift/pull/36

@@ -78,6 +78,14 @@ final class ErrorDispatcherTests: XCTestCase {
         XCTAssertEqual(session.requestCount, 25)
     }
 
+    func testRequeueRespectsQueueCapacity() async {
+        session.statusCode = 403
+        await dispatcher.enqueue((0...29).map { _ in newReport() })
+
+        await dispatcher.flush()
+        XCTAssertEqual(session.requestCount, 25)
+    }
+
     func testFlushShouldPostErrorEndpoint() async throws {
         await dispatcher.enqueue(newReport(fatal: true))
 

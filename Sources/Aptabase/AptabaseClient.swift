@@ -34,14 +34,8 @@ class AptabaseClient {
     }
 
     public func trackEvent(_ eventName: String, with props: [String: AnyCodableValue] = [:]) async {
-        let now = Date()
-        if lastTouched.distance(to: now) > AptabaseClient.sessionTimeout {
-            sessionId = AptabaseClient.newSessionId()
-        }
-        lastTouched = now
-
         evaluateSessionId()
-        
+
         let evt = Event(timestamp: Date(),
                         sessionId: sessionId,
                         eventName: eventName,
@@ -60,19 +54,25 @@ class AptabaseClient {
         await eventDispatcher.enqueue(evt)
     }
     
-    /// Begins tracking an error asynchronously.
+    /// Begins tracking an error asynchronously. The stack trace is captured here, on the caller's
+    /// thread, so it points at the call site rather than at the task that delivers the report.
     public func trackError(_ error: any Error, fatal: Bool = false) {
+        let stackTrace = ErrorReport.captureStackTrace()
         Task {
-            await trackError(error, fatal: fatal)
+            await trackError(error, fatal: fatal, stackTrace: stackTrace)
         }
     }
-    
-    public func trackError(_ error: any Error, fatal: Bool = false) async {
+
+    public func trackError(_ error: any Error, fatal: Bool = false, stackTrace: String? = nil) async {
         evaluateSessionId()
-        
-        let errorReport = ErrorReport.build(error, fatal: fatal, sessionId: sessionId, sdkVersion: AptabaseClient.sdkVersion, env: env)
-        
+
+        let errorReport = ErrorReport.build(error, fatal: fatal, sessionId: sessionId, sdkVersion: AptabaseClient.sdkVersion, env: env, stackTrace: stackTrace)
+
         await errorDispatcher.enqueue(errorReport)
+
+        // Errors are high-value: attempt delivery right away instead of waiting for the next
+        // poll tick. Failures stay queued for the regular flushes.
+        await errorDispatcher.flush()
     }
 
     public func startPolling() {

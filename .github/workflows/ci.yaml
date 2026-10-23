@@ -9,11 +9,11 @@ on:
 jobs:
   build:
     name: ${{ matrix.platform }} on Xcode ${{ matrix.xcode }}
-    runs-on: macos-13
+    runs-on: macos-15
     strategy:
       matrix:
         platform: [macOS, iOS, tvOS, watchOS]
-        xcode: [^14] # ^15
+        xcode: [^16]
     steps:
       - uses: actions/checkout@v4
 
