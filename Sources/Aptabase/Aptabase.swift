@@ -157,13 +157,13 @@ public class Aptabase: NSObject {
     ]
 
     private func getBaseUrl(_ region: String, _ host: String?) -> String? {
-        guard var baseURL = hosts[region] else { return nil }
-        if region == "SH" {
-            guard let host else {
-                debugPrint("Aptabase: Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
-                return nil
-            }
-            baseURL = host
+        if let host {
+            return host
+        }
+
+        guard let baseURL = hosts[region], !baseURL.isEmpty else {
+            debugPrint("Aptabase: Host parameter must be defined when using Self-Hosted App Key. Tracking will be disabled.")
+            return nil
         }
 
         return baseURL
